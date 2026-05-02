@@ -126,6 +126,25 @@
       font-size: 14px;
     }
 
+    .close-menu {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-size: 32px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.5rem;
+      transition: transform 0.2s;
+    }
+
+    .close-menu:hover {
+      transform: scale(1.1);
+      color: var(--gold-light);
+    }
+
     .menu-overlay {
       position: fixed;
       top: 0;
@@ -290,7 +309,8 @@
     .seat-container {
       padding: 2rem;
       background: var(--black);
-      overflow: hidden;
+      overflow: scroll;
+
     }
 
     /* Scrollable wrapper so seat rows never clip — shows fade hint on right edge */
@@ -298,10 +318,7 @@
       overflow-x: auto;
       overflow-y: visible;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 0.5rem;
-      /* Fade hint on the right when scrollable */
-      mask-image: linear-gradient(to right, black 85%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+      padding: 0 2.5rem 1.5rem;
       scrollbar-width: thin;
       scrollbar-color: rgba(201, 168, 76, 0.3) transparent;
     }
@@ -1410,10 +1427,7 @@
       }
 
       /* Seat rows — allow horizontal scroll on mobile */
-      .seat-scroll-wrap {
-        mask-image: linear-gradient(to right, black 75%, transparent 98%);
-        -webkit-mask-image: linear-gradient(to right, black 75%, transparent 98%);
-      }
+      .seat-scroll-wrap {}
 
       .seat-scroll-hint {
         display: block;
@@ -1577,6 +1591,7 @@
 
   <div class="menu-overlay" onclick="toggleMenu()"></div>
   <div class="mobile-menu" id="mobile-menu">
+    <button class="close-menu" onclick="toggleMenu()">×</button>
     <button class="nav-tab active" onclick="showPage('booking'); toggleMenu()">Book Tickets</button>
     <button class="nav-tab" onclick="showPage('tickets'); toggleMenu()">My Tickets</button>
     <button class="nav-tab" onclick="showPage('admin'); toggleMenu()">Admin</button>
