@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us </title>
-    <link rel="icon" type="image/x-icon" href="./assets/shlogo-removebg-preview.png">
+  <link rel="icon" type="image/x-icon" href="./assets/shlogo-removebg-preview.png">
   <script>window.BACKEND_URL = 'http://localhost:4000';</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -335,9 +336,12 @@
     .profiles-section::before {
       content: '';
       position: absolute;
-      top: 0; left: 50%; transform: translateX(-50%);
-      width: 800px; height: 800px;
-      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -374,8 +378,8 @@
 
     .profile-card {
       position: relative;
-      background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border: 1px solid rgba(201,168,76,0.12);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(201, 168, 76, 0.12);
       border-radius: 24px;
       padding: 2.5rem 2rem 2rem;
       text-align: center;
@@ -387,34 +391,56 @@
       animation: fadeUp 0.7s ease forwards;
     }
 
-    .profile-card:nth-child(1) { animation-delay: 0.1s; }
-    .profile-card:nth-child(2) { animation-delay: 0.2s; }
-    .profile-card:nth-child(3) { animation-delay: 0.3s; }
-    .profile-card:nth-child(4) { animation-delay: 0.4s; }
-    .profile-card:nth-child(5) { animation-delay: 0.5s; }
-    .profile-card:nth-child(6) { animation-delay: 0.6s; }
+    .profile-card:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .profile-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .profile-card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .profile-card:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .profile-card:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .profile-card:nth-child(6) {
+      animation-delay: 0.6s;
+    }
 
     @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .profile-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(201,168,76,0.12), transparent 65%);
+      background: radial-gradient(circle at 50% 0%, rgba(201, 168, 76, 0.12), transparent 65%);
       opacity: 0;
       transition: opacity 0.5s;
     }
 
     .profile-card:hover {
-      border-color: rgba(201,168,76,0.4);
+      border-color: rgba(201, 168, 76, 0.4);
       transform: translateY(-10px);
-      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.7), 0 0 40px -10px rgba(201,168,76,0.15);
-      background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(201,168,76,0.03));
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px -10px rgba(201, 168, 76, 0.15);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(201, 168, 76, 0.03));
     }
 
-    .profile-card:hover::before { opacity: 1; }
+    .profile-card:hover::before {
+      opacity: 1;
+    }
 
     .profile-rank {
       position: absolute;
@@ -431,7 +457,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(201,168,76,0.3);
+      box-shadow: 0 4px 12px rgba(201, 168, 76, 0.3);
     }
 
     .profile-img-ring {
@@ -457,8 +483,13 @@
     }
 
     @keyframes spinRing {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     .profile-img-ring::after {
@@ -466,7 +497,7 @@
       position: absolute;
       inset: -3px;
       border-radius: 50%;
-      border: 2px solid rgba(201,168,76,0.3);
+      border: 2px solid rgba(201, 168, 76, 0.3);
       transition: border-color 0.4s;
     }
 
@@ -493,7 +524,10 @@
       filter: grayscale(0) contrast(1);
     }
 
-    .profile-info { position: relative; z-index: 1; }
+    .profile-info {
+      position: relative;
+      z-index: 1;
+    }
 
     .profile-pos {
       display: inline-block;
@@ -504,9 +538,9 @@
       font-weight: 600;
       margin-bottom: 0.75rem;
       padding: 0.3rem 0.9rem;
-      border: 1px solid rgba(201,168,76,0.25);
+      border: 1px solid rgba(201, 168, 76, 0.25);
       border-radius: 999px;
-      background: rgba(201,168,76,0.06);
+      background: rgba(201, 168, 76, 0.06);
     }
 
     .profile-name {
@@ -548,7 +582,7 @@
     .profile-divider {
       width: 30px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.4), transparent);
       margin: 0.8rem auto;
     }
 
@@ -779,7 +813,7 @@
       <a href="chapters.html">Chapters</a>
       <a href="contact.html">Contact</a>
     </div>
-    <!-- <a href="ROS2026_Ticket_Booking.html" class="btn-book">Book Tickets 🎟</a> -->
+    <a href="ROS2026_Ticket_Booking.html" class="btn-book">Book Tickets 🎟</a>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -796,7 +830,7 @@
       <a href="about.html">About</a>
       <a href="chapters.html">Chapters</a>
       <a href="contact.html">Contact</a>
-      <!-- <a href="ROS2026_Ticket_Booking.html" class="mobile-book">Book Tickets 🎟</a> -->
+      <a href="ROS2026_Ticket_Booking.html" class="mobile-book">Book Tickets 🎟</a>
     </div>
   </nav>
 
@@ -848,7 +882,10 @@
           <h3 class="profile-name">Haritha Samararathna</h3>
           <div class="profile-divider"></div>
           <a href="mailto:haritha981012@gmail.com" class="profile-email">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
             haritha981012@gmail.com
           </a>
         </div>
@@ -865,7 +902,10 @@
           <h3 class="profile-name">Sandeep Senevirathne</h3>
           <div class="profile-divider"></div>
           <a href="mailto:sandeepkavindu2001@gmail.com" class="profile-email">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
             sandeepkavindu2001@gmail.com
           </a>
         </div>
@@ -882,7 +922,10 @@
           <h3 class="profile-name">Ishan Tharindu</h3>
           <div class="profile-divider"></div>
           <a href="mailto:Ishantharindu976@gmail.com" class="profile-email">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
             Ishantharindu976@gmail.com
           </a>
         </div>
@@ -899,7 +942,10 @@
           <h3 class="profile-name">Shanaka Samararathna</h3>
           <div class="profile-divider"></div>
           <a href="mailto:shanakasamararathne@gmail.com" class="profile-email">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
             shanakasamararathne@gmail.com
           </a>
         </div>
@@ -916,7 +962,10 @@
           <h3 class="profile-name">Dinu Suvin</h3>
           <div class="profile-divider"></div>
           <a href="#" class="profile-email">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
             Haritha Samararathna
           </a>
         </div>
@@ -933,7 +982,10 @@
           <h3 class="profile-name">Nilusha Vishwajith</h3>
           <div class="profile-divider"></div>
           <a href="mailto:nilusha0411@gmail.com" class="profile-email">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
             nilusha0411@gmail.com
           </a>
         </div>
@@ -949,31 +1001,31 @@
       <img src="./assets/OBA logo.png" alt="OBA Logo" class="footer-logo">
     </div>
 
-  
-  
-  <div class="footer-socials">
-    <a href="https://www.facebook.com/share/1Bjxcg1w2Q/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-      </svg>
-    </a>
-  
-    <a href="https://www.instagram.com/_asksbb_?igsh=ZnJ2a2k1YWo4ZzQ0" target="_blank" aria-label="Instagram">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-      </svg>
-    </a>
-  
-    <a href="https://youtube.com/@anandasastralaya?si=GJSpKiHZ8tALFxnG" target="_blank" aria-label="YouTube">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z" />
-      </svg>
-    </a>
-  </div>
+
+
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/share/1Bjxcg1w2Q/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+        </svg>
+      </a>
+
+      <a href="https://www.instagram.com/_asksbb_?igsh=ZnJ2a2k1YWo4ZzQ0" target="_blank" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+        </svg>
+      </a>
+
+      <a href="https://youtube.com/@anandasastralaya?si=GJSpKiHZ8tALFxnG" target="_blank" aria-label="YouTube">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z" />
+        </svg>
+      </a>
+    </div>
 
     <div class="footer-links">
       <div class="footer-link-row">
