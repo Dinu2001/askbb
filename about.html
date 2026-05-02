@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us </title>
+  <link rel="icon" type="image/x-icon" href="./assets/shlogo-removebg-preview.png">
+  <script>window.BACKEND_URL = 'http://localhost:4000';</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dark: #8B6914;
+      --cream: #F5F0E8;
+      --cream-dark: #E8DFC8;
+      --black: #0A0A0A;
+      --dark: #111;
+      --dark2: #1A1A1A;
+      --dark3: #242424;
+      --muted: #888880;
+      --shadow-gold: 0 10px 40px -10px rgba(201, 168, 76, .35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #050505;
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, .85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, .15);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #1a1a1a, #0a0a0a);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 0 20px rgba(201, 168, 76, .25);
+    }
+
+    .nav-name {
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 2px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .nav-name .sub {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 3px;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--cream);
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .btn-book {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--black);
+      padding: .75rem 1.75rem;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: transform .15s, box-shadow .2s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .btn-book:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 50px -12px rgba(201, 168, 76, .55);
+    }
+
+    /* ---------- MOBILE MENU ---------- */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--gold);
+      cursor: pointer;
+      padding: 5px;
+      z-index: 1001;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100vh;
+      background: rgba(10, 10, 10, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 8rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      border-left: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    .mobile-menu a {
+      font-size: 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--cream);
+      transition: color 0.3s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--gold);
+    }
+
+    .mobile-book {
+      margin-top: 1rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--black) !important;
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s;
+      z-index: 999;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* ---------- HERO SECTION ---------- */
+    .about-hero {
+      position: relative;
+      padding: 8rem 2rem 6rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 20% 30%, rgba(201, 168, 76, 0.5), transparent 10%), radial-gradient(circle at 80% 70%, rgba(139, 105, 20, 0.5), transparent 10%), linear-gradient(180deg, rgba(5, 5, 5, 0.1) 0%, #050505 100%), url('./assets/IMG_4996.JPG.jpeg') center/cover;
+      opacity: 0.4;
+    }
+
+    .about-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .about-hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: #aaa;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    /* ---------- HISTORY SECTION ---------- */
+    .history-section {
+      padding: 8rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .history-image {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      box-shadow: 0 0 50px rgba(201, 168, 76, 0.1);
+    }
+
+    .history-image img {
+      width: 100%;
+      display: block;
+      filter: brightness(0.9) contrast(1.1);
+      transition: transform 0.8s;
+    }
+
+    .history-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent);
+    }
+
+    .history-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .history-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      color: var(--gold);
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    .history-content p {
+      color: #b8b8a8;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-size: 16px;
+    }
+
+    /* ---------- STAFF SECTION ---------- */
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      color: var(--cream);
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .staff-section {
+      padding: 8rem 2rem;
+      background: linear-gradient(180deg, rgba(5, 5, 5, 0) 0%, rgba(201, 168, 76, 0.05) 50%, rgba(5, 5, 5, 0) 100%);
+    }
+
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .staff-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      border-radius: 30px;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .staff-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: radial-gradient(circle at 50% 0%, rgba(201, 168, 76, 0.15), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .staff-card:hover {
+      transform: translateY(-15px);
+      border-color: rgba(201, 168, 76, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6), 0 10px 30px -10px rgba(201, 168, 76, 0.2);
+    }
+
+    .staff-card:hover::before {
+      opacity: 1;
+    }
+
+    .staff-img-wrapper {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 2.5rem;
+      z-index: 1;
+    }
+
+    .staff-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      padding: 6px;
+      transition: all 0.5s;
+      filter: grayscale(0.2) contrast(1.1);
+    }
+
+    .staff-card:hover .staff-img {
+      transform: scale(1.05);
+      filter: grayscale(0) contrast(1);
+      border-color: var(--gold-light);
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+    }
+
+    .staff-info {
+      position: relative;
+      z-index: 1;
+    }
+
+    .staff-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .staff-pos {
+      font-size: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .staff-bio {
+      color: #999;
+      font-size: 14px;
+      line-height: 1.7;
+      font-weight: 300;
+      padding: 0 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .staff-contact {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+
+    .staff-card:hover .staff-contact {
+      opacity: 1;
+    }
+
+    .staff-contact a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      transition: all 0.3s;
+    }
+
+    .staff-contact a:hover {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      background: #050505;
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-logo {
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.15));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .footer-logo[alt="School Logo"] {
+      height: 85px;
+      width: auto;
+    }
+
+    .footer-logo[alt="Band Logo"] {
+      height: 140px;
+      width: auto;
+      margin: 0 0px;
+    }
+
+    .footer-logo[alt="OBA Logo"] {
+      height: 180px;
+      width: auto;
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.1);
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.1);
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-socials a {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #0A1128;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-socials a:hover {
+      transform: translateY(-5px);
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+      box-shadow: 0 10px 20px rgba(201, 168, 76, 0.2);
+    }
+
+    .footer-links {
+      margin-bottom: 4rem;
+    }
+
+    .footer-link-row {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-link-row a {
+      font-size: 14px;
+      color: var(--cream);
+      opacity: 0.7;
+      transition: all 0.3s;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-link-row a:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
+
+    .footer-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.2), transparent);
+      margin: 4rem auto;
+      max-width: 1200px;
+    }
+
+    .footer-bottom {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .copyright {
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .attribution {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.5;
+      font-weight: 600;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+
+      .nav-links,
+      .btn-book {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .history-section {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .staff-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        padding: 0 1rem;
+      }
+
+      .nav-name .sub {
+        display: none;
+      }
+
+      .staff-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .about-hero h1 {
+        font-size: 36px;
+      }
+
+      .history-content h2 {
+        font-size: 32px;
+      }
+    }
+
+
+    .footer-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      /* space between logos */
+    }
+
+    .footer-logo {
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.15));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Individual sizing to fix visual weight difference */
+    .footer-logo[alt="School Logo"] {
+      height: 85px;
+      width: auto;
+    }
+
+    .footer-logo[alt="Band Logo"] {
+      height: 140px;
+      width: auto;
+      margin: 0 0px;
+    }
+
+    .footer-logo[alt="OBA Logo"] {
+      height: 180px;
+      width: auto;
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-brand">
+      <div class="nav-logo" id="nav-logo"><span data-bind="logo.text">ROS</span></div>
+      <div class="nav-name">
+        <span data-bind="event.organizer">Ananda Sastralaya OBA</span>
+        <span class="sub"><span data-bind="event.name">Rhythm of Sastra</span> · <span
+            data-bind="event.chapter_short">Chapter 04</span></span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="chapters.html">Chapters</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <!-- <a href="ROS2026_Ticket_Booking.html" class="btn-book">Book Tickets 🎟</a> -->
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="chapters.html">Chapters</a>
+      <a href="contact.html">Contact</a>
+      <a href="ROS2026_Ticket_Booking.html" class="mobile-book">Book Tickets 🎟</a>
+    </div>
+  </nav>
+
+  <header class="about-hero">
+    <h1>Our <em>Legacy</em></h1>
+    <p>A century of musical excellence and cultural heritage at Ananda Sastralaya Kotte.</p>
+  </header>
+
+  <section class="history-section">
+    <div class="history-image">
+      <img src="./assets/about logo.png" alt="History of Ananda Sastralaya">
+    </div>
+    <div class="history-content">
+      <h2>A Journey Through <em>Time</em></h2>
+      <p>Ananda Sastralaya, Kotte, established in 1890, is one of the most respected educational institutions in Sri
+        Lanka. Rooted in strong cultural and academic traditions, the school has played a significant role in shaping
+        generations of students who have gone on to contribute meaningfully to society.</p>
+      <p>Among its many proud traditions, the Western Band of Ananda Sastralaya holds a special place. Known for its
+        discipline, precision, and musical excellence, the band has become a symbol of pride for the school. Over the
+        years, it has performed at major school events, national celebrations, and inter-school competitions.</p>
+      <p>Today, Ananda Sastralaya continues to uphold its legacy by nurturing not only academic excellence but also
+        musical talent, ensuring that the spirit of tradition and innovation lives on through every performance and
+        every generation.</p>
+    </div>
+  </section>
+
+  <section class="staff-section">
+    <h2 class="section-title">The <em>Guiding</em> Hands</h2>
+    <div class="staff-grid">
+      <div class="staff-card">
+        <div class="staff-img-wrapper">
+          <img src="./assets/miss.jpg" class="staff-img" alt="Mrs. Anjalee Herath">
+        </div>
+        <div class="staff-info">
+          <h3 class="staff-name">Mrs. Anjalee Herath</h3>
+          <p class="staff-pos">Teacher-in-Charge</p>
+          <p class="staff-bio">A dedicated mentor with over 15 years of experience in musical education, guiding the
+            band towards artistic excellence and discipline.</p>
+          <!-- <div class="staff-contact">
+            <a href="#" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg></a>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="staff-card">
+        <div class="staff-img-wrapper">
+          <img src="./assets/thurunu.jpeg" class="staff-img" alt="Thurunu Udantha">
+        </div>
+        <div class="staff-info">
+          <h3 class="staff-name">Thurunu Udantha</h3>
+          <p class="staff-pos">Leader of the Band</p>
+          <p class="staff-bio">An exceptional musician leading the ensemble with passion and precision, ensuring the
+            "Rhythm of Sastra" resonates in every note.</p>
+          <!-- <div class="staff-contact">
+            <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg></a>
+            <a href="#" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg></a>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="staff-card">
+        <div class="staff-img-wrapper">
+          <img src="./assets/sir.2.jpeg" class="staff-img" alt="D.M.P.Thushara Dissanayake">
+        </div>
+        <div class="staff-info">
+          <h3 class="staff-name">D.M.P.Thushara Dissanayake</h3>
+          <p class="staff-pos">Music Coach</p>
+          <p class="staff-bio">A master of composition and arrangement, bringing professional expertise to shape the
+            unique sound of Ananda Sastralaya.</p>
+          <!-- <div class="staff-contact">
+            <a href="#" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg></a>
+            <a href="#" aria-label="Web"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg></a>
+          </div> -->
+        </div>
+      </div>
+  </section>
+
+  <footer>
+    <div class="footer-logos">
+      <img src="./assets/bandlogo-removebg-preview.png" alt="Band Logo" class="footer-logo">
+      <img src="./assets/shlogo-removebg-preview.png" alt="School Logo" class="footer-logo">
+      <img src="./assets/OBA logo.png" alt="OBA Logo" class="footer-logo">
+    </div>
+
+    
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/share/1Bjxcg1w2Q/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+        </svg>
+      </a>
+
+      <a href="https://www.instagram.com/_asksbb_?igsh=ZnJ2a2k1YWo4ZzQ0" target="_blank" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+        </svg>
+      </a>
+
+      <a href="https://youtube.com/@anandasastralaya?si=GJSpKiHZ8tALFxnG" target="_blank" aria-label="YouTube">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-link-row">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="chapters.html">Chapters</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-link-row">
+        <a href="#">Powered by Western Band Old boys association</a>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="footer-bottom">
+      <div class="copyright">© <span id="footer-year">2026</span> Ananda Sastralaya OBA</div>
+      <div class="attribution">BUILT BY WESTERN BAND OLD BOYS ASSOCIATION</div>
+    </div>
+  </footer>
+
+
+
+
+
+
+
+
+
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const body = document.body;
+
+    function toggleMenu() {
+      const isOpen = mobileMenu.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+      body.classList.toggle('menu-open');
+
+      const lines = menuToggle.querySelectorAll('line');
+      if (isOpen) {
+        lines[0].setAttribute('x1', '18'); lines[0].setAttribute('y1', '6'); lines[0].setAttribute('x2', '6'); lines[0].setAttribute('y2', '18');
+        lines[1].style.opacity = '0';
+        lines[2].setAttribute('x1', '6'); lines[2].setAttribute('y1', '6'); lines[2].setAttribute('x2', '18'); lines[2].setAttribute('y2', '18');
+      } else {
+        lines[0].setAttribute('x1', '3'); lines[0].setAttribute('y1', '12'); lines[0].setAttribute('x2', '21'); lines[0].setAttribute('y2', '12');
+        lines[1].style.opacity = '1';
+        lines[2].setAttribute('x1', '3'); lines[2].setAttribute('y1', '6'); lines[2].setAttribute('x2', '21'); lines[2].setAttribute('y2', '6');
+        lines[2].setAttribute('x1', '3'); lines[2].setAttribute('y1', '18'); lines[2].setAttribute('x2', '21'); lines[2].setAttribute('y2', '18');
+      }
+    }
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', toggleMenu);
+      menuOverlay.addEventListener('click', toggleMenu);
+    }
+
+    function hydrate(cfg) {
+      if (cfg['event.chapter'] && !cfg['event.chapter_short']) {
+        cfg['event.chapter_short'] = String(cfg['event.chapter']).split('·')[0].trim();
+      }
+      document.querySelectorAll('[data-bind]').forEach(el => {
+        const v = cfg[el.dataset.bind];
+        if (v != null && v !== '') el.textContent = v;
+      });
+      document.querySelectorAll('[data-bind-html]').forEach(el => {
+        const v = cfg[el.dataset.bindHtml];
+        if (v != null && v !== '') el.innerHTML = v;
+      });
+      const navLogo = document.getElementById('nav-logo');
+      if (navLogo && cfg['logo.url']) {
+        const url = cfg['logo.url'].startsWith('/') && window.BACKEND_URL ? window.BACKEND_URL + cfg['logo.url'] : cfg['logo.url'];
+        navLogo.innerHTML = `<img src="${url}" alt="logo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+      }
+      const footerYear = document.getElementById('footer-year');
+      if (footerYear && cfg['event.date_iso']) {
+        const d = new Date(cfg['event.date_iso']);
+        if (!isNaN(d)) footerYear.textContent = d.getFullYear();
+      }
+    }
+
+    async function loadConfig() {
+      if (!window.BACKEND_URL) return;
+      try {
+        const r = await fetch(window.BACKEND_URL + '/api/config');
+        if (!r.ok) return;
+        hydrate(await r.json());
+      } catch (e) { console.warn('config load failed:', e); }
+    }
+    loadConfig();
+  </script>
+</body>
+
+</html>

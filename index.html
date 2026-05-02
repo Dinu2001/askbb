@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rhythm of Sastra 2026 Where Rhythm Embraces the Soul</title>
+  <link rel="icon" type="image/x-icon" href="./assets/shlogo-removebg-preview.png">
+  <meta name="description"
+    content="Rhythm of Sastra — Chapter 04. A soulful night of music presented by the Ananda Sastralaya Old Boys Association.">
+  <script>window.BACKEND_URL = 'http://localhost:4000';</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dark: #8B6914;
+      --cream: #F5F0E8;
+      --cream-dark: #E8DFC8;
+      --black: #0A0A0A;
+      --dark: #111;
+      --dark2: #1A1A1A;
+      --dark3: #242424;
+      --muted: #888880;
+      --shadow-gold: 0 10px 40px -10px rgba(201, 168, 76, .35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #050505;
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, .85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, .15);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #1a1a1a, #0a0a0a);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 0 20px rgba(201, 168, 76, .25);
+    }
+
+    .nav-name {
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 2px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .nav-name .sub {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 3px;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--cream);
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .btn-book {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--black);
+      padding: .75rem 1.75rem;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: transform .15s, box-shadow .2s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .btn-book:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 50px -12px rgba(201, 168, 76, .55);
+    }
+
+    /* ---------- MOBILE MENU ---------- */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--gold);
+      cursor: pointer;
+      padding: 5px;
+      z-index: 1001;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100vh;
+      background: rgba(10, 10, 10, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 8rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      border-left: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    .mobile-menu a {
+      font-size: 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--cream);
+      transition: color 0.3s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--gold);
+    }
+
+    .mobile-book {
+      margin-top: 1rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--black) !important;
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s;
+      z-index: 999;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      padding: 5rem 0 4rem;
+      min-height: calc(100vh - 72px);
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-bg-slider {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .hero-bg-slider .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: opacity 2s ease-in-out, transform 8s linear;
+    }
+
+    .hero-bg-slider .slide.active {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(ellipse at 70% 40%, rgba(201, 168, 76, .15) 0%, transparent 50%), radial-gradient(ellipse at 20% 80%, rgba(139, 105, 20, .1) 0%, transparent 50%), linear-gradient(180deg, rgba(5, 5, 5, 0.2) 0%, #0a0a0a 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 55%;
+      z-index: -1;
+      background: radial-gradient(ellipse 40% 60% at 55% 45%, rgba(201, 168, 76, .08), transparent 70%), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%23C9A84C' stop-opacity='.35'/><stop offset='100%' stop-color='%23C9A84C' stop-opacity='0'/></linearGradient></defs><g fill='url(%23g)' stroke='%23C9A84C' stroke-opacity='.25' stroke-width='1'><ellipse cx='300' cy='260' rx='68' ry='82'/><path d='M232 340 Q300 320 368 340 L400 500 L380 720 L220 720 L200 500 Z'/><path d='M200 500 L130 620' stroke-width='22' stroke-linecap='round' fill='none'/><path d='M400 500 L520 420' stroke-width='22' stroke-linecap='round' fill='none'/><circle cx='520' cy='410' r='28' fill='none' stroke-width='4'/><path d='M520 380 L530 300' stroke-width='3'/></g><g fill='%23C9A84C' opacity='.2'><circle cx='120' cy='150' r='2'/><circle cx='480' cy='180' r='2'/><circle cx='250' cy='80' r='2'/><circle cx='450' cy='620' r='2'/><circle cx='80' cy='400' r='2'/></g></svg>") no-repeat center/contain;
+      opacity: .75;
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 6.5vw, 80px);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: .95;
+      letter-spacing: -1px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: #b8b8a8;
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--black);
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: transform .15s, box-shadow .2s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: var(--shadow-gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 55px -12px rgba(201, 168, 76, .6);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(201, 168, 76, .45);
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: all .2s;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, .06);
+      color: var(--gold);
+    }
+
+    /* ---------- HERO CARD ---------- */
+    .hero-card {
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(145deg, rgba(20, 20, 20, .85), rgba(10, 10, 10, .9));
+      border: 1px solid rgba(201, 168, 76, .25);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .6), 0 0 0 1px rgba(201, 168, 76, .05) inset;
+    }
+
+    .hero-card-logo .ornament {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      color: var(--gold);
+      line-height: 1;
+      font-style: italic;
+      letter-spacing: -2px;
+    }
+
+    .card-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: .5rem 0;
+      font-size: 13px;
+      color: #c8c8b8;
+      line-height: 1.6;
+    }
+
+    .card-list li .icon {
+      color: var(--gold);
+      flex-shrink: 0;
+      width: 20px;
+      text-align: center;
+      margin-top: 2px;
+    }
+
+    .info-tiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .6rem;
+      margin-top: 1rem;
+    }
+
+    .info-tile {
+      background: rgba(0, 0, 0, .4);
+      border: 1px solid rgba(201, 168, 76, .18);
+      border-radius: 10px;
+      padding: 1rem .5rem;
+      text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .info-tile:hover {
+      border-color: rgba(201, 168, 76, .5);
+      transform: translateY(-2px);
+    }
+
+    .info-tile .value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--cream);
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .info-tile .label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ---------- COUNTDOWN ---------- */
+    .countdown-section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .countdown-wrap {
+      background: linear-gradient(135deg, rgba(25, 20, 10, .7), rgba(10, 10, 10, .9));
+      border: 1px solid rgba(201, 168, 76, .2);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .cd-cell {
+      background: rgba(0, 0, 0, .55);
+      border: 1px solid rgba(201, 168, 76, .2);
+      border-radius: 14px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+
+    .cd-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .cd-lbl {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+
+
+
+
+
+    /* ---------- HIGHLIGHTS ---------- */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4.5vw, 52px);
+      color: var(--cream);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .section-title em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #b8b8a8;
+      max-width: 640px;
+      margin: 0 auto 3rem;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .highlight {
+      background: linear-gradient(145deg, var(--dark2), var(--dark));
+      border: 1px solid rgba(201, 168, 76, .15);
+      border-radius: 18px;
+      padding: 2rem 1.75rem;
+      transition: transform .3s, border-color .3s;
+    }
+
+    .highlight:hover {
+      transform: translateY(-6px);
+      border-color: rgba(201, 168, 76, .4);
+    }
+
+    .highlight .hl-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(201, 168, 76, .25), rgba(201, 168, 76, .05));
+      border: 1px solid rgba(201, 168, 76, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+
+    .highlight h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      color: var(--cream);
+      font-weight: 500;
+      margin-bottom: .5rem;
+    }
+
+    .highlight p {
+      color: #b8b8a8;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ---------- TIERS ---------- */
+    .tiers-section {
+      background: linear-gradient(180deg, transparent, rgba(20, 15, 5, .4), transparent);
+    }
+
+    .tier-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: .75rem;
+      margin-bottom: 2rem;
+    }
+
+    .tier-chip {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 14px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, border-color .2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 160px;
+    }
+
+    .tier-chip:hover {
+      transform: translateY(-4px);
+    }
+
+    .tier-chip::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--tier-color, var(--gold));
+    }
+
+    .tier-chip .tier-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: var(--tier-color, var(--gold));
+      font-weight: 500;
+    }
+
+    .tier-chip .tier-price {
+      font-size: 13px;
+      color: var(--cream);
+      margin-top: .25rem;
+    }
+
+    .tier-chip .tier-price .amt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--cream);
+    }
+
+    .tier-chip .tier-note {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: .5rem;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      background: #050505;
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-logo {
+      height: 80px;
+      width: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.15));
+      transition: transform 0.3s;
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-socials a {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #0A1128;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-socials a:hover {
+      transform: translateY(-5px);
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+      box-shadow: 0 10px 20px rgba(201, 168, 76, 0.2);
+    }
+
+    .footer-links {
+      margin-bottom: 4rem;
+    }
+
+    .footer-link-row {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-link-row a {
+      font-size: 14px;
+      color: var(--cream);
+      opacity: 0.7;
+      transition: all 0.3s;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-link-row a:hover {
+      opacity: 1;
+      color: var(--gold);
+    }
+
+    .footer-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.2), transparent);
+      margin: 4rem auto;
+      max-width: 1200px;
+    }
+
+    .footer-bottom {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .copyright {
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .attribution {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.5;
+      font-weight: 600;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:1024px) {
+
+      .nav-links,
+      .btn-book {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero::after {
+        opacity: .15;
+        width: 100%;
+      }
+
+      .highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .tier-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width:640px) {
+      nav {
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-name .sub {
+        display: none;
+      }
+
+      .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .tier-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .footer-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      /* space between logos */
+    }
+
+    .footer-logo {
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.15));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Individual sizing to fix visual weight difference */
+    .footer-logo[alt="School Logo"] {
+      height: 85px;
+      width: auto;
+    }
+
+    .footer-logo[alt="Band Logo"] {
+      height: 140px;
+      width: auto;
+      margin: 0 0px;
+    }
+
+    .footer-logo[alt="OBA Logo"] {
+      height: 180px;
+      width: auto;
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.1);
+    }
+
+    /* ========== INTRO LOADER ========== */
+    #intro-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #050505;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #intro-loader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Outer spinning gold arc */
+    .loader-ring {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--gold);
+      border-right-color: rgba(201, 168, 76, 0.3);
+      animation: loaderSpin 1.8s linear infinite;
+    }
+
+    .loader-ring-inner {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      border-bottom-color: var(--gold-light);
+      border-left-color: rgba(232, 201, 122, 0.2);
+      animation: loaderSpin 2.4s linear infinite reverse;
+    }
+
+    @keyframes loaderSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Gold pulse glow beneath logo */
+    .loader-glow {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.18) 0%, transparent 70%);
+      animation: loaderPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes loaderPulse {
+
+      0%,
+      100% {
+        transform: scale(0.85);
+        opacity: 0.4;
+      }
+
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    /* Logo wrapper — scale-in on load */
+    .loader-logo-wrap {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loader-logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: scale(0.6);
+      animation: logoReveal 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+      filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.5));
+    }
+
+    @keyframes logoReveal {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Text block below logo */
+    .loader-text {
+      text-align: center;
+      opacity: 0;
+      animation: textFadeIn 0.7s ease 1.1s forwards;
+    }
+
+    @keyframes textFadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .loader-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: 4px;
+    }
+
+    .loader-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .loader-sub {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Progress bar at bottom */
+    .loader-bar-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .loader-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+      animation: barFill 3.2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+    }
+
+    @keyframes barFill {
+      to {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== INTRO LOADER ===== -->
+  <div id="intro-loader" role="status" aria-label="Loading">
+    <div class="loader-logo-wrap">
+      <div class="loader-ring"></div>
+      <div class="loader-ring-inner"></div>
+      <div class="loader-glow"></div>
+      <img src="./assets/shlogo-removebg-preview.png" class="loader-logo" alt="Ananda Sastralaya">
+    </div>
+    <div class="loader-text">
+      <div class="loader-title">Rhythm of <em>Sastra</em></div>
+      <div class="loader-sub">Ananda Sastralaya · Chapter 04</div>
+    </div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+  <nav>
+    <div class="nav-brand">
+      <div class="nav-logo" id="nav-logo"><span data-bind="logo.text">ROS</span></div>
+      <div class="nav-name">
+        <span data-bind="event.organizer">Ananda Sastralaya OBA</span>
+        <span class="sub"><span data-bind="event.name">Rhythm of Sastra</span> · <span
+            data-bind="event.chapter_short">Chapter 04</span></span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="chapters.html">Chapters</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <!-- <a href="ROS2026_Ticket_Booking.html" class="btn-book">Book Tickets 🎟</a> -->
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12" id="line1"></line>
+        <line x1="3" y1="6" x2="21" y2="6" id="line2"></line>
+        <line x1="3" y1="18" x2="21" y2="18" id="line3"></line>
+      </svg>
+    </button>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="chapters.html">Chapters</a>
+      <a href="contact.html">Contact</a>
+      <a href="ROS2026_Ticket_Booking.html" class="mobile-book">Book Tickets 🎟</a>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="hero-bg-slider">
+      <div class="slide active" style="background-image: url('./assets/IMG_4993.JPG.jpeg');"></div>
+      <div class="slide" style="background-image: url('./assets/IMG_4994.JPG.jpeg');"></div>
+      <div class="slide" style="background-image: url('./assets/IMG_4995.JPG.jpeg');"></div>
+      <div class="slide" style="background-image: url('./assets/IMG_4996.JPG.jpeg');"></div>
+      <div class="slide" style="background-image: url('./assets/IMG_4997.JPG.jpeg');"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="eyebrow" data-bind="hero.eyebrow">Chapter 04 · 2026</div>
+        <h1 class="hero-title" data-bind-html="hero.title_html">
+          Where <em>Rhythm</em><br>Embraces the Soul
+        </h1>
+        <p class="hero-desc" data-bind="hero.description">
+          Join us for a mesmerizing evening of musical brilliance as the Western Band of Ananda Sastralaya, Kotte takes
+          the stage for a night that resonates with tradition and innovation.
+        </p>
+        <div class="hero-ctas">
+          <a href="ROS2026_Ticket_Booking.html" class="btn-primary">Reserve Your Seat 🎟</a>
+          <a href="./about.html" class="btn-ghost">The Journey<span>→</span></a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-logo">
+          <div class="ornament">R.O.S</div>
+          <div class="ornament-sub">Musical Excellence</div>
+        </div>
+        <ul class="card-list">
+          <li><span class="icon">✦</span><span>Over 100 students participating.</span></li>
+          <li><span class="icon">✦</span><span>A blend of classical and modern hits.</span></li>
+        </ul>
+        <div class="info-tiles">
+          <div class="info-tile">
+            <div class="icon">📅</div>
+            <div class="value" id="ev-date">SEP 30</div>
+            <div class="label" id="ev-date-label">Sunday, 2026</div>
+          </div>
+          <div class="info-tile">
+            <div class="icon">🕕</div>
+            <div class="value">6:30 PM</div>
+            <div class="label">Onwards</div>
+          </div>
+          <div class="info-tile">
+            <div class="icon">📍</div>
+            <div class="value" style="font-size:16px;">NELUM POKUNA</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="countdown-section">
+    <div class="countdown-wrap">
+      <div class="countdown-title">Counting down to the <em>Grand Evening</em></div>
+      <div class="countdown-grid">
+        <div class="cd-cell">
+          <div class="cd-num" id="cd-days">00</div>
+          <div class="cd-lbl">Days</div>
+        </div>
+        <div class="cd-cell">
+          <div class="cd-num" id="cd-hours">00</div>
+          <div class="cd-lbl">Hours</div>
+        </div>
+        <div class="cd-cell">
+          <div class="cd-num" id="cd-mins">00</div>
+          <div class="cd-lbl">Minutes</div>
+        </div>
+        <div class="cd-cell">
+          <div class="cd-num" id="cd-secs">00</div>
+          <div class="cd-lbl">Seconds</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================================ ABOUT -->
+  <section id="about" class="section">
+    <div class="section-eyebrow" data-bind="about.eyebrow">About the Chapter</div>
+    <h2 class="section-title" data-bind-html="about.title_html">A Night the <em>Soul Remembers</em></h2>
+    <p class="section-sub" data-bind="about.body">
+      Rhythm of Sastra is more than a concert it is a tribute to the rich musical heritage of Ananda Sastralaya,
+      hand curated by its Old Boys Association. Every chapter invites Sri Lanka's finest voices and instrumentalists
+      to share a stage that celebrates tradition, brotherhood, and the timeless embrace of rhythm and soul.
+    </p>
+  </section>
+
+  <!-- ============================================================ HIGHLIGHTS -->
+  <section id="highlights" class="section">
+    <div class="section-eyebrow">What to Expect</div>
+    <h2 class="section-title">Highlights of <em data-bind="event.chapter_short">Chapter 04</em></h2>
+    <div class="highlights">
+      <div class="highlight">
+        <div class="hl-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13" />
+            <circle cx="6" cy="18" r="3" />
+            <circle cx="18" cy="16" r="3" />
+          </svg>
+        </div>
+        <h3 data-bind="highlights.1_title">Live Musical Showcase</h3>
+        <p data-bind="highlights.1_body">A meticulously curated lineup of vocalists, instrumentalists and guest artists
+          performing across multiple moods from the classical to the contemporary.</p>
+      </div>
+      <div class="highlight">
+        <div class="hl-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12h20" />
+            <path d="M12 2l4 10-4 10-4-10z" />
+          </svg>
+        </div>
+        <h3 data-bind="highlights.2_title">An Auditorium Experience</h3>
+        <p data-bind="highlights.2_body">Premium seating across Ground Floor and Balcony tiers, thoughtfully designed so
+          every row enjoys uncompromised sightlines and sound.</p>
+      </div>
+      <div class="highlight">
+        <div class="hl-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 3v9l6 3" />
+          </svg>
+        </div>
+        <h3 data-bind="highlights.3_title">A Tradition Since 2019</h3>
+        <p data-bind="highlights.3_body">Chapter 04 continues a tradition that began as an intimate alumni gathering and
+          has grown into one of Colombo's most anticipated cultural evenings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ TIERS -->
+  <section id="tiers" class="section tiers-section">
+    <div class="section-eyebrow">Seating Tiers</div>
+    <h2 class="section-title">Pick Your <em>Spot</em></h2>
+    <p class="section-sub">
+      Every seat is a good seat. Choose the tier that suits your evening, from intimate Platinum rows closest to the
+      stage
+      to comfortable Bronze balcony views of the full spectacle.
+    </p>
+    <div class="tier-row">
+      <div class="tier-chip" style="--tier-color:#D4A0B5;">
+        <div class="tier-name">VIP</div>
+        <div class="tier-price"><span class="amt">Special</span></div>
+        <div class="tier-note">Balcony 1 · Blocks 1–3</div>
+      </div>
+      <div class="tier-chip" style="--tier-color:#8B9BB4;">
+        <div class="tier-name">Platinum</div>
+        <div class="tier-price">Rs. <span class="amt">5,000</span></div>
+        <div class="tier-note">Center, Row I–J</div>
+      </div>
+      <div class="tier-chip" style="--tier-color:#C9A84C;">
+        <div class="tier-name">Gold</div>
+        <div class="tier-price">Rs. <span class="amt">3,500</span></div>
+        <div class="tier-note">Ground Floor Center</div>
+      </div>
+      <div class="tier-chip" style="--tier-color:#A8A9AD;">
+        <div class="tier-name">Silver</div>
+        <div class="tier-price">Rs. <span class="amt">2,500</span></div>
+        <div class="tier-note">Aisle Seating</div>
+      </div>
+      <div class="tier-chip" style="--tier-color:#CD7F32;">
+        <div class="tier-name">Bronze</div>
+        <div class="tier-price">Rs. <span class="amt">1,500</span></div>
+        <div class="tier-note">Balcony 2 · Front Rows</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1rem;">
+      <a href="ROS2026_Ticket_Booking.html" class="btn-primary">Choose Your Seats →</a>
+    </div>
+  </section>
+
+  <footer>
+
+
+    <div class="footer-logos">
+      <img src="./assets/bandlogo-removebg-preview.png" alt="Band Logo" class="footer-logo">
+      <img src="./assets/shlogo-removebg-preview.png" alt="School Logo" class="footer-logo">
+      <img src="./assets/OBA logo.png" alt="OBA Logo" class="footer-logo">
+    </div>
+
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/share/1Bjxcg1w2Q/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+        </svg>
+      </a>
+     
+      <a href="https://www.instagram.com/_asksbb_?igsh=ZnJ2a2k1YWo4ZzQ0" target="_blank" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+        </svg>
+      </a>
+
+      <a href="https://youtube.com/@anandasastralaya?si=GJSpKiHZ8tALFxnG" target="_blank" aria-label="YouTube">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z" />
+        </svg>
+      </a>
+    </div>
+
+
+    
+
+    <div class="footer-links">
+      <div class="footer-link-row">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="chapters.html">Chapters</a>
+        <a href="contact.html">Contact</a>
+
+      </div>
+      <div class="footer-link-row">
+        <a href="#">Powered by Western Band Old boys association</a>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="footer-bottom">
+      <div class="copyright">© <span id="footer-year">2026</span> Ananda Sastralaya OBA</div>
+      <div class="attribution">BUILT BY WESTERN BAND OLD BOYS ASSOCIATION</div>
+    </div>
+  </footer>
+
+  <script>
+    let EVENT_DATE = new Date('2026-12-20T18:30:00+05:30');
+    const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    function hydrate(cfg) {
+      if (cfg['event.chapter'] && !cfg['event.chapter_short']) {
+        cfg['event.chapter_short'] = String(cfg['event.chapter']).split('·')[0].trim();
+      }
+      document.querySelectorAll('[data-bind]').forEach(el => {
+        const v = cfg[el.dataset.bind];
+        if (v != null && v !== '') el.textContent = v;
+      });
+      document.querySelectorAll('[data-bind-html]').forEach(el => {
+        const v = cfg[el.dataset.bindHtml];
+        if (v != null && v !== '') el.innerHTML = v;
+      });
+      const navLogo = document.getElementById('nav-logo');
+      if (navLogo && cfg['logo.url']) {
+        const url = cfg['logo.url'].startsWith('/') && window.BACKEND_URL ? window.BACKEND_URL + cfg['logo.url'] : cfg['logo.url'];
+        navLogo.innerHTML = `<img src="${url}" alt="logo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+      }
+      if (cfg['event.date_iso']) {
+        const d = new Date(cfg['event.date_iso']);
+        if (!isNaN(d)) EVENT_DATE = d;
+      }
+      const footerYear = document.getElementById('footer-year');
+      if (footerYear) footerYear.textContent = EVENT_DATE.getFullYear();
+    }
+
+    async function loadConfig() {
+      if (!window.BACKEND_URL) return;
+      try {
+        const r = await fetch(window.BACKEND_URL + '/api/config');
+        if (!r.ok) return;
+        hydrate(await r.json());
+      } catch (e) { console.warn('config load failed:', e); }
+    }
+
+    function tick() {
+      const now = new Date();
+      const diff = EVENT_DATE - now;
+      const pad = (n) => String(n).padStart(2, '0');
+      if (diff <= 0) {
+        ['cd-days', 'cd-hours', 'cd-mins', 'cd-secs'].forEach(id => {
+          const el = document.getElementById(id); if (el) el.textContent = '00';
+        });
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor(diff / 3600000) % 24;
+      const m = Math.floor(diff / 60000) % 60;
+      const s = Math.floor(diff / 1000) % 60;
+      const map = { 'cd-days': d, 'cd-hours': h, 'cd-mins': m, 'cd-secs': s };
+      for (const [id, val] of Object.entries(map)) {
+        const el = document.getElementById(id); if (el) el.textContent = pad(val);
+      }
+    }
+
+    const heroSlides = document.querySelectorAll('.hero-bg-slider .slide');
+    if (heroSlides.length > 0) {
+      let currentSlide = 0;
+      setInterval(() => {
+        heroSlides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % heroSlides.length;
+        heroSlides[currentSlide].classList.add('active');
+      }, 2000);
+    }
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const body = document.body;
+
+    function toggleMenu() {
+      const isOpen = mobileMenu.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+      body.classList.toggle('menu-open');
+
+      const lines = menuToggle.querySelectorAll('line');
+      if (isOpen) {
+        lines[0].setAttribute('x1', '18'); lines[0].setAttribute('y1', '6'); lines[0].setAttribute('x2', '6'); lines[0].setAttribute('y2', '18');
+        lines[1].style.opacity = '0';
+        lines[2].setAttribute('x1', '6'); lines[2].setAttribute('y1', '6'); lines[2].setAttribute('x2', '18'); lines[2].setAttribute('y2', '18');
+      } else {
+        lines[0].setAttribute('x1', '3'); lines[0].setAttribute('y1', '12'); lines[0].setAttribute('x2', '21'); lines[0].setAttribute('y2', '12');
+        lines[1].style.opacity = '1';
+        lines[2].setAttribute('x1', '3'); lines[2].setAttribute('y1', '6'); lines[2].setAttribute('x2', '21'); lines[2].setAttribute('y2', '6');
+        lines[2].setAttribute('x1', '3'); lines[2].setAttribute('y1', '18'); lines[2].setAttribute('x2', '21'); lines[2].setAttribute('y2', '18');
+      }
+    }
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', toggleMenu);
+      menuOverlay.addEventListener('click', toggleMenu);
+    }
+
+
+
+
+
+
+    loadConfig();
+
+
+
+
+
+
+    tick();
+    setInterval(tick, 1000);
+
+    /* ===== INTRO LOADER LOGIC ===== */
+    (function () {
+      const loader = document.getElementById('intro-loader');
+      if (!loader) return;
+
+      // Lock scroll while loader is showing
+      document.body.style.overflow = 'hidden';
+
+      // Dismiss after 4 seconds
+      setTimeout(function () {
+        loader.classList.add('hide');
+        // After fade-out transition completes (0.8s), remove it from DOM & unlock scroll
+        setTimeout(function () {
+          loader.remove();
+          document.body.style.overflow = '';
+        }, 800);
+      }, 2000);
+    })();
+  </script>
+</body>
+
+</html>

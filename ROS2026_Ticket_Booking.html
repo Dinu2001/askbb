@@ -1,0 +1,2628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rhythm of Sastra 2026 — Ticket Booking</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --gold-dark: #8B6914;
+      --cream: #F5F0E8;
+      --cream-dark: #E8DFC8;
+      --black: #0A0A0A;
+      --dark: #111111;
+      --dark2: #1A1A1A;
+      --dark3: #242424;
+      --muted: #888880;
+      --bronze: #CD7F32;
+      --silver: #A8A9AD;
+      --gold-tier: #C9A84C;
+      --platinum: #8B9BB4;
+      --vip: #D4A0B5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--dark);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--gold);
+      letter-spacing: 2px;
+    }
+
+    .nav-logo span {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream);
+      font-size: 14px;
+      display: block;
+      letter-spacing: 4px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0;
+    }
+
+    .nav-tab {
+      padding: 0 1.5rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .nav-tab:hover {
+      color: var(--gold);
+    }
+
+    .nav-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* PAGES */
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(180deg, var(--dark2) 0%, var(--black) 100%);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .hero-sub {
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 8vw, 88px);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 0.9;
+      letter-spacing: -1px;
+    }
+
+    .hero-title em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-meta {
+      margin-top: 1.5rem;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 20px;
+      color: rgba(201, 168, 76, 0.7);
+      margin-top: 0.5rem;
+    }
+
+    /* TIER LEGEND */
+    .tier-bar {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      background: var(--dark2);
+      overflow-x: auto;
+    }
+
+    .tier-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.5rem;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .tier-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* FLOOR TABS */
+    .floor-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      background: var(--dark3);
+    }
+
+    .floor-tab {
+      padding: 1rem 2rem;
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .floor-tab:hover {
+      color: var(--cream);
+    }
+
+    .floor-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* SEAT MAP */
+    .seat-container {
+      padding: 2rem;
+      background: var(--black);
+    }
+
+    .stage-label {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .stage-bar {
+      background: rgba(201, 168, 76, 0.15);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 50px;
+      padding: 0.6rem 3rem;
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* GROUND FLOOR GRID */
+    .gf-section {
+      margin-bottom: 2rem;
+    }
+
+    .gf-section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .seat-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .row-label {
+      font-size: 10px;
+      color: var(--muted);
+      width: 18px;
+      text-align: center;
+      flex-shrink: 0;
+      font-weight: 500;
+    }
+
+    .seat {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px 3px 0 0;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: 1px solid transparent;
+      flex-shrink: 0;
+    }
+
+    .seat:hover {
+      transform: scale(1.3);
+      z-index: 10;
+      position: relative;
+    }
+
+    .seat.bronze {
+      background: #8B5E3C;
+      border-color: #A0714E;
+    }
+
+    .seat.silver {
+      background: #6B7A8D;
+      border-color: #7E8FA0;
+    }
+
+    .seat.gold {
+      background: #9A7A1A;
+      border-color: #B8941F;
+    }
+
+    .seat.platinum {
+      background: #5A6878;
+      border-color: #6B7D90;
+    }
+
+    .seat.vip {
+      background: #7A4060;
+      border-color: #9A5278;
+    }
+
+    .seat.selected {
+      transform: scale(1.2);
+      box-shadow: 0 0 8px var(--gold);
+      border-color: var(--gold) !important;
+      background: var(--gold) !important;
+    }
+
+    .seat.booked {
+      background: var(--dark3) !important;
+      border-color: rgba(255, 255, 255, 0.08) !important;
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
+
+    .seat.booked:hover {
+      transform: none;
+    }
+
+    /* BALCONY BLOCK MAP */
+    .balcony-map {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .balcony-block {
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      min-width: 100px;
+    }
+
+    .balcony-block:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .balcony-block.selected {
+      border-color: var(--gold);
+      box-shadow: 0 0 16px rgba(201, 168, 76, 0.3);
+    }
+
+    .balcony-block.booked-full {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .balcony-block.booked-full:hover {
+      transform: none;
+      border-color: transparent;
+    }
+
+    .block-name {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .block-count {
+      font-size: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--gold);
+    }
+
+    .block-price {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* BALCONY SEAT GRID */
+    .balcony-seats-panel {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 12px;
+      margin: 0 2rem 2rem;
+      padding: 1.5rem;
+    }
+
+    .balcony-seats-panel h3 {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .b-seat-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .b-seat {
+      width: 36px;
+      height: 28px;
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.7);
+      border: 1px solid transparent;
+      transition: all 0.15s;
+      font-weight: 500;
+    }
+
+    .b-seat:hover {
+      transform: scale(1.1);
+    }
+
+    .b-seat.selected {
+      background: var(--gold) !important;
+      color: var(--black) !important;
+      border-color: var(--gold-light) !important;
+    }
+
+    .b-seat.booked {
+      background: var(--dark3) !important;
+      color: rgba(255, 255, 255, 0.2) !important;
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
+
+    /* CART */
+    .cart-bar {
+      position: sticky;
+      bottom: 0;
+      background: var(--dark2);
+      border-top: 1px solid rgba(201, 168, 76, 0.3);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+    }
+
+    .cart-info {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .cart-count {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .cart-count strong {
+      color: var(--gold);
+      font-size: 18px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .cart-seats {
+      font-size: 11px;
+      color: var(--muted);
+      max-width: 400px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.75rem 2rem;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold);
+      padding: 0.75rem 2rem;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      background: rgba(201, 168, 76, 0.05);
+    }
+
+    /* BOOKING FORM PAGE */
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .form-card {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+
+    .form-sub {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background: var(--dark3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: rgba(201, 168, 76, 0.5);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* ORDER SUMMARY */
+    .order-card {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 12px;
+      padding: 2rem;
+      position: sticky;
+      top: 80px;
+    }
+
+    .order-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .order-seat-code {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .order-seat-tier {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .order-price {
+      font-size: 14px;
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .order-total {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .order-total-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .order-total-amt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      color: var(--gold);
+    }
+
+    /* TICKET PAGE */
+    .ticket-page {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .ticket-success {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .ticket-success-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.15);
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .ticket-success h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      color: var(--gold);
+    }
+
+    .ticket-success p {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      margin-top: 0.5rem;
+    }
+
+    /* TICKET CARD */
+    .ticket-card {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .ticket-header {
+      background: linear-gradient(135deg, var(--dark3), #1A1500);
+      padding: 1.5rem 2rem;
+      border-bottom: 1px dashed rgba(201, 168, 76, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .ticket-event {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+
+    .ticket-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      color: var(--cream);
+    }
+
+    .ticket-chapter {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .ticket-body {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0;
+    }
+
+    .ticket-details {
+      padding: 1.5rem 2rem;
+    }
+
+    .ticket-field {
+      margin-bottom: 1rem;
+    }
+
+    .ticket-field-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .ticket-field-value {
+      font-size: 16px;
+      color: var(--cream);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .ticket-seat-code {
+      font-size: 22px;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--gold);
+      letter-spacing: 2px;
+    }
+
+    .ticket-qr {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px dashed rgba(201, 168, 76, 0.3);
+      background: white;
+    }
+
+    .ticket-qr-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: #888;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    .ticket-tear {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .tear-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--black);
+      flex-shrink: 0;
+    }
+
+    .tear-line {
+      flex: 1;
+      border-top: 1px dashed rgba(201, 168, 76, 0.3);
+    }
+
+    .ticket-footer {
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ticket-id {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .ticket-tier-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ADMIN PAGE */
+    .admin-layout {
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .admin-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      color: var(--cream);
+    }
+
+    .admin-login {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: 12px;
+      padding: 3rem;
+      max-width: 400px;
+      margin: 4rem auto;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      color: var(--gold);
+      line-height: 1;
+      margin-top: 0.25rem;
+    }
+
+    .stat-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .bookings-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .bookings-table th {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .bookings-table td {
+      padding: 0.75rem 1rem;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .bookings-table tr:hover td {
+      background: rgba(201, 168, 76, 0.03);
+    }
+
+    .status-badge {
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .status-confirmed {
+      background: rgba(40, 150, 80, 0.15);
+      color: #5DA85D;
+    }
+
+    .status-pending {
+      background: rgba(201, 168, 76, 0.15);
+      color: var(--gold);
+    }
+
+    .status-cancelled {
+      background: rgba(180, 60, 60, 0.15);
+      color: #C06060;
+    }
+
+    .table-wrapper {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .table-toolbar {
+      padding: 1rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .search-input {
+      background: var(--dark3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      outline: none;
+      width: 260px;
+    }
+
+    .filter-select {
+      background: var(--dark3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .btn-sm {
+      padding: 0.4rem 1rem;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      background: transparent;
+      color: var(--gold);
+      transition: all 0.2s;
+    }
+
+    .btn-sm:hover {
+      background: rgba(201, 168, 76, 0.1);
+    }
+
+    .btn-danger-sm {
+      border-color: rgba(180, 60, 60, 0.4);
+      color: #C06060;
+    }
+
+    .btn-danger-sm:hover {
+      background: rgba(180, 60, 60, 0.1);
+    }
+
+    /* ADMIN SUBTABS + CONTENT EDITOR */
+    .admin-subtabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-subtab {
+      padding: 0.85rem 1.75rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .admin-subtab:hover {
+      color: var(--cream);
+    }
+
+    .admin-subtab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .ce-section {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .ce-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+
+    .ce-section .ce-sub {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .ce-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 1.25rem;
+    }
+
+    .ce-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .ce-field label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .ce-field input,
+    .ce-field textarea {
+      width: 100%;
+      background: var(--dark3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      padding: 0.6rem 0.85rem;
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .ce-field input:focus,
+    .ce-field textarea:focus {
+      border-color: rgba(201, 168, 76, 0.5);
+    }
+
+    .ce-field textarea {
+      min-height: 76px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .ce-field .hint {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .ce-upload {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .ce-upload .preview {
+      width: 56px;
+      height: 56px;
+      border-radius: 8px;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      background: var(--dark3);
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+
+    .ce-upload input[type=file] {
+      display: none;
+    }
+
+    .ce-upload .btn-sm {
+      padding: 0.4rem 0.9rem;
+    }
+
+    .ce-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      position: sticky;
+      bottom: 1rem;
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-top: 1.5rem;
+      z-index: 5;
+      box-shadow: 0 -10px 30px -10px rgba(0, 0, 0, 0.8);
+    }
+
+    .ce-actions .status {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    .ce-actions .status.ok {
+      color: #5DA85D;
+    }
+
+    .ce-actions .status.err {
+      color: #C06060;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+    }
+
+    /* ALERT */
+    .alert {
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 1rem;
+    }
+
+    .alert-warning {
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      color: var(--gold-light);
+    }
+
+    .alert-info {
+      background: rgba(80, 120, 200, 0.1);
+      border: 1px solid rgba(80, 120, 200, 0.3);
+      color: #90B0E8;
+    }
+
+    @media (max-width: 768px) {
+      .booking-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-tabs {
+        display: none;
+      }
+
+      .ticket-body {
+        grid-template-columns: 1fr;
+      }
+
+      .ticket-qr {
+        border-left: none;
+        border-top: 1px dashed rgba(201, 168, 76, 0.3);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <span data-bind="event.name">Rhythm of Sastra</span>
+      <span data-bind="event.chapter">Chapter 04 · 2026</span>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showPage('booking')">Book Tickets</button>
+
+      <button class="nav-tab" onclick="showPage('tickets')">My Tickets</button>
+
+      <button class="nav-tab" onclick="showPage('admin')">Admin</button>
+      <button class="nav-tab " onclick="window.location.href='../index.html'">Home</button>
+    </div>
+  </nav>
+
+  <!-- BOOKING PAGE -->
+  <div id="page-booking" class="page active">
+    <div class="hero">
+      <div class="hero-sub"><span data-bind="event.organizer">Ananda Sastralaya Old Boys Association</span> Presents
+      </div>
+      <div class="hero-title" data-bind-html="hero.title_html">Rhythm of<br><em>Sastra</em></div>
+      <div class="hero-tagline" data-bind="event.tagline">Where Rhythm Embraces the Soul</div>
+      <div class="hero-meta" data-bind="event.chapter">Chapter 04 &nbsp;·&nbsp; 2026</div>
+    </div>
+
+    <div class="tier-bar">
+      <div class="tier-item">
+        <div class="tier-dot" style="background:#C9A84C;"></div> Gold — Rs. 3,500
+      </div>
+      <div class="tier-item">
+        <div class="tier-dot" style="background:#A8A9AD;"></div> Silver — Rs. 2,500
+      </div>
+      <div class="tier-item">
+        <div class="tier-dot" style="background:#CD7F32;"></div> Bronze — Rs. 1,500
+      </div>
+      <div class="tier-item">
+        <div class="tier-dot" style="background:#8B9BB4;"></div> Platinum — Rs. 5,000
+      </div>
+      <div class="tier-item">
+        <div class="tier-dot" style="background:#D4A0B5;"></div> VIP — Special
+      </div>
+      <div class="tier-item">
+        <div class="tier-dot" style="background:#333;"></div> Booked
+      </div>
+    </div>
+
+    <div class="floor-tabs">
+      <button class="floor-tab active" onclick="showFloor('gf')">Ground Floor</button>
+      <button class="floor-tab" onclick="showFloor('b1')">Balcony One</button>
+      <button class="floor-tab" onclick="showFloor('b2')">Balcony Two</button>
+    </div>
+
+    <div id="floor-gf" class="floor-content">
+      <div class="seat-container">
+        <div class="stage-label"><span class="stage-bar">Stage</span></div>
+        <div id="gf-map"></div>
+      </div>
+    </div>
+
+    <div id="floor-b1" class="floor-content" style="display:none;">
+      <div class="seat-container">
+        <div class="stage-label" style="margin-bottom:1rem;"><span class="stage-bar">VIP Zone Below</span></div>
+        <div class="balcony-map" id="b1-blocks"></div>
+      </div>
+      <div class="balcony-seats-panel" id="b1-seats-panel" style="display:none;">
+        <h3 id="b1-selected-block-title">Block — Seats</h3>
+        <div class="b-seat-grid" id="b1-seats-grid"></div>
+      </div>
+    </div>
+
+    <div id="floor-b2" class="floor-content" style="display:none;">
+      <div class="seat-container">
+        <div class="stage-label" style="margin-bottom:1rem;"><span class="stage-bar">All Bronze (Rs. 1,500)</span></div>
+        <div id="gf-map-b2"></div>
+      </div>
+    </div>
+
+    <div class="cart-bar">
+      <div class="cart-info">
+        <div class="cart-count"><strong id="cart-count">0</strong> seats selected</div>
+        <div class="cart-seats" id="cart-seats-list">No seats selected yet</div>
+      </div>
+      <div style="display:flex;gap:1rem;align-items:center;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);">Rs. <span
+            id="cart-total">0</span></div>
+        <button class="btn-secondary" onclick="clearSelection()">Clear</button>
+        <button class="btn-primary" onclick="proceedToCheckout()">Proceed to Checkout →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT PAGE -->
+  <div id="page-checkout" class="page">
+    <div style="padding:1.5rem 2rem;border-bottom:1px solid rgba(201,168,76,0.1);">
+      <button onclick="showPage('booking')"
+        style="background:none;border:none;color:var(--muted);cursor:pointer;font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:1px;">←
+        Back to Seat Selection</button>
+    </div>
+    <div class="booking-layout">
+      <div>
+        <div class="form-card">
+          <div class="form-title">Your Details</div>
+          <div class="form-sub">Ticket Holder Information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-input" id="f-fname" placeholder="Kasun">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-input" id="f-lname" placeholder="Perera">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" id="f-email" placeholder="kasun@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mobile Number</label>
+            <input type="tel" class="form-input" id="f-phone" placeholder="+94 7X XXX XXXX">
+          </div>
+          <div class="form-group">
+            <label class="form-label">NIC / Passport</label>
+            <input type="text" class="form-input" id="f-nic" placeholder="For identity verification at entry">
+          </div>
+        </div>
+
+        <div class="form-card" style="margin-top:1.5rem;">
+          <div class="form-title">Payment</div>
+          <div class="form-sub">Bank Transfer Only</div>
+
+          <div
+            style="background:var(--dark3);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:1.25rem;margin-bottom:1rem;">
+            <div
+              style="font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:0.75rem;">
+              Step 1 · Transfer to this account</div>
+            <div style="display:grid;grid-template-columns:130px 1fr;row-gap:6px;font-size:14px;">
+              <div style="color:var(--muted);">Bank</div>
+              <div id="bank-name"><strong>Commercial Bank of Ceylon</strong></div>
+              <div style="color:var(--muted);">Account Name</div>
+              <div id="bank-account-name"><strong>Ananda Sastralaya OBA</strong></div>
+              <div style="color:var(--muted);">Account No.</div>
+              <div id="bank-account-number" style="font-family:monospace;"><strong>1234567890</strong></div>
+              <div style="color:var(--muted);">Branch</div>
+              <div id="bank-branch"><strong>Colombo 07</strong></div>
+            </div>
+          </div>
+
+          <div
+            style="background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.4);border-radius:8px;padding:1.25rem;margin-bottom:1rem;">
+            <div
+              style="font-size:10px;color:#5DA85D;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.75rem;">
+              Step 2 · Send the receipt on WhatsApp</div>
+            <div style="font-size:13px;color:var(--cream);line-height:1.6;margin-bottom:0.75rem;">
+              Send your transaction receipt (screenshot or photo) to our WhatsApp number along with your Booking ID.
+            </div>
+            <a id="whatsapp-link" href="https://wa.me/94772944014" target="_blank"
+              style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:0.65rem 1.25rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:0.5px;">
+              <span>💬</span> <span id="whatsapp-display">+94 77 294 4014</span>
+            </a>
+          </div>
+
+          <div class="alert alert-warning" style="font-size:12px;">
+            Your QR tickets will be emailed to you <strong>after we confirm your payment</strong>. You will receive an
+            email with your Booking ID as soon as you submit this form.
+          </div>
+
+          <button class="btn-primary" style="width:100%;padding:1rem;margin-top:0.5rem;"
+            onclick="confirmBooking()">Confirm Booking →</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="order-card">
+          <div class="order-title">Order Summary</div>
+          <div id="order-items"></div>
+          <div class="order-total">
+            <div class="order-total-label">Total</div>
+            <div class="order-total-amt">Rs. <span id="order-total-amt">0</span></div>
+          </div>
+          <div
+            style="margin-top:1rem;padding:0.75rem;background:rgba(201,168,76,0.05);border-radius:6px;font-size:11px;color:var(--muted);letter-spacing:0.5px;line-height:1.6;">
+            Tickets will be sent to your email. Present QR code at the entrance. Each QR is unique and valid for one
+            entry only.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TICKETS PAGE -->
+  <div id="page-tickets" class="page">
+    <div class="ticket-page">
+      <div class="ticket-success" id="ticket-success-header" style="display:none;">
+        <div class="ticket-success-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <h2>Booking Confirmed!</h2>
+        <p id="ticket-email-note">Tickets have been sent to your email</p>
+      </div>
+      <div id="tickets-container"></div>
+      <div id="no-tickets" style="text-align:center;padding:4rem;color:var(--muted);">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:64px;opacity:0.2;">🎟</div>
+        <p style="margin-top:1rem;font-size:13px;letter-spacing:1px;line-height:1.8;">
+          Your QR tickets are delivered by <strong style="color:var(--cream);">email</strong> once payment is
+          confirmed.<br>
+          Check your inbox (and spam folder) after sending your transaction receipt on WhatsApp.
+        </p>
+        <button class="btn-primary" style="margin-top:1.5rem;" onclick="showPage('booking')">Browse Seats →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN PAGE -->
+  <div id="page-admin" class="page">
+    <div id="admin-login-screen">
+      <div class="admin-login">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);margin-bottom:0.5rem;">Admin
+          Access</div>
+        <div style="font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:2rem;">Rhythm of Sastra 2026
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" id="admin-pass" placeholder="Enter admin password"
+            onkeydown="if(event.key==='Enter')adminLogin()">
+        </div>
+        <button class="btn-primary" style="width:100%;margin-top:0.5rem;" onclick="adminLogin()">Login →</button>
+        <div style="font-size:10px;color:var(--muted);margin-top:1rem;opacity:0.6;">(Demo password: admin2026)</div>
+      </div>
+    </div>
+    <div id="admin-dashboard" style="display:none;">
+      <div class="admin-layout">
+        <div class="admin-header">
+          <div class="admin-title">Admin Dashboard</div>
+          <div style="display:flex;gap:1rem;align-items:center;">
+            <button class="btn-secondary" onclick="exportCSV()">Export CSV</button>
+            <button class="btn-sm" onclick="adminLogout()">Logout</button>
+          </div>
+        </div>
+
+        <div class="admin-subtabs">
+          <button class="admin-subtab active" data-subtab="bookings" onclick="showAdminSubtab('bookings')">Bookings
+            &amp; Stats</button>
+          <button class="admin-subtab" data-subtab="content" onclick="showAdminSubtab('content')">Event Content</button>
+        </div>
+
+        <div id="admin-subtab-bookings" class="admin-subtab-pane">
+          <div class="stats-grid" id="admin-stats"></div>
+          <div class="table-wrapper">
+            <div class="table-toolbar">
+              <input type="text" class="search-input" placeholder="Search by name, email, seat..."
+                oninput="filterBookings(this.value)">
+              <select class="filter-select" onchange="filterByStatus(this.value)">
+                <option value="">All Status</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="pending">Pending</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+              <select class="filter-select" onchange="filterByFloor(this.value)">
+                <option value="">All Floors</option>
+                <option value="GF">Ground Floor</option>
+                <option value="B1">Balcony One</option>
+                <option value="B2">Balcony Two</option>
+              </select>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="bookings-table">
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Seats</th>
+                    <th>Tier</th>
+                    <th>Amount</th>
+                    <th>Receipt</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="bookings-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="admin-subtab-content" class="admin-subtab-pane" style="display:none;">
+          <div id="content-editor"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESSING MODAL -->
+  <div class="modal-overlay" id="modal-processing">
+    <div class="modal" style="text-align:center;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);margin-bottom:1rem;"
+        id="modal-title">Processing Payment</div>
+      <div id="modal-msg" style="font-size:13px;color:var(--muted);line-height:1.6;">Please wait while we confirm your
+        booking...</div>
+      <div id="modal-spinner"
+        style="margin:2rem auto;width:40px;height:40px;border:2px solid rgba(201,168,76,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;">
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <script>
+    // ============================================================
+    // BACKEND CONFIG
+    // Set BACKEND_URL to your deployed API (e.g. 'https://api.rhythmofsastra.lk').
+    // Leave empty to run in offline/localStorage mode.
+    // ============================================================
+    // API origin. Empty string = same-origin (default for Netlify).
+    // For local dev with a separate Express process, set to e.g. 'http://localhost:4000'.
+    const BACKEND_URL = 'http://localhost:4000';
+    const USE_BACKEND = true;
+
+    const api = {
+      async get(path, auth) {
+        const r = await fetch(BACKEND_URL + path, { headers: auth ? { Authorization: 'Bearer ' + auth } : {} });
+        if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || r.statusText);
+        return r.json();
+      },
+      async post(path, body, auth) {
+        const r = await fetch(BACKEND_URL + path, {
+          method: 'POST',
+          headers: Object.assign({ 'Content-Type': 'application/json' }, auth ? { Authorization: 'Bearer ' + auth } : {}),
+          body: JSON.stringify(body || {}),
+        });
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(data.error || r.statusText);
+        return data;
+      },
+      async patch(path, body, auth) {
+        const r = await fetch(BACKEND_URL + path, {
+          method: 'PATCH',
+          headers: Object.assign({ 'Content-Type': 'application/json' }, auth ? { Authorization: 'Bearer ' + auth } : {}),
+          body: JSON.stringify(body || {}),
+        });
+        if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || r.statusText);
+        return r.json();
+      },
+    };
+
+    // ============================================================
+    // DATA STRUCTURES
+    // ============================================================
+    const TIERS = {
+      bronze: { name: 'Bronze', price: 1500, color: '#CD7F32', badgeBg: '#3A2010', badgeColor: '#CD7F32' },
+      silver: { name: 'Silver', price: 2500, color: '#A8A9AD', badgeBg: '#2A2A2A', badgeColor: '#A8A9AD' },
+      gold: { name: 'Gold', price: 3500, color: '#C9A84C', badgeBg: '#2A1F00', badgeColor: '#C9A84C' },
+      platinum: { name: 'Platinum', price: 5000, color: '#8B9BB4', badgeBg: '#1A2030', badgeColor: '#8B9BB4' },
+      vip: { name: 'VIP', price: 0, color: '#D4A0B5', badgeBg: '#2A1020', badgeColor: '#D4A0B5' },
+    };
+
+    // Ground Floor seat layout: row -> [start, end, tier]
+    const GF_ROWS = [
+      { id: 'A', seats: 32, ranges: [{ s: 1, e: 32, tier: 'bronze' }] },
+      { id: 'B', seats: 34, ranges: [{ s: 1, e: 34, tier: 'bronze' }] },
+      { id: 'C', seats: 36, ranges: [{ s: 1, e: 36, tier: 'bronze' }] },
+      { id: 'D', seats: 38, ranges: [{ s: 1, e: 38, tier: 'bronze' }] },
+      { id: 'E', seats: 40, ranges: [{ s: 1, e: 9, tier: 'silver' }, { s: 10, e: 31, tier: 'gold' }, { s: 32, e: 40, tier: 'silver' }] },
+      { id: 'F', seats: 40, ranges: [{ s: 1, e: 9, tier: 'silver' }, { s: 10, e: 31, tier: 'gold' }, { s: 32, e: 40, tier: 'silver' }] },
+      { id: 'G', seats: 43, ranges: [{ s: 1, e: 10, tier: 'silver' }, { s: 11, e: 32, tier: 'gold' }, { s: 33, e: 43, tier: 'silver' }] },
+      { id: 'H', seats: 42, ranges: [{ s: 1, e: 10, tier: 'silver' }, { s: 11, e: 31, tier: 'gold' }, { s: 33, e: 42, tier: 'silver' }] },
+      { id: 'I', seats: 36, ranges: [{ s: 1, e: 7, tier: 'silver' }, { s: 8, e: 29, tier: 'platinum' }, { s: 30, e: 36, tier: 'silver' }] },
+      { id: 'J', seats: 40, ranges: [{ s: 1, e: 9, tier: 'silver' }, { s: 10, e: 31, tier: 'platinum' }, { s: 32, e: 40, tier: 'silver' }] },
+      { id: 'K', seats: 44, ranges: [{ s: 1, e: 11, tier: 'silver' }, { s: 12, e: 33, tier: 'gold' }, { s: 34, e: 44, tier: 'silver' }] },
+      { id: 'L', seats: 44, ranges: [{ s: 1, e: 11, tier: 'silver' }, { s: 12, e: 33, tier: 'gold' }, { s: 34, e: 44, tier: 'silver' }] },
+      { id: 'M', seats: 44, ranges: [{ s: 1, e: 11, tier: 'silver' }, { s: 12, e: 33, tier: 'gold' }, { s: 34, e: 44, tier: 'silver' }] },
+      { id: 'N', seats: 44, ranges: [{ s: 1, e: 11, tier: 'silver' }, { s: 12, e: 33, tier: 'gold' }, { s: 34, e: 44, tier: 'silver' }] },
+      { id: 'O', seats: 44, ranges: [{ s: 1, e: 11, tier: 'silver' }, { s: 12, e: 33, tier: 'gold' }, { s: 34, e: 44, tier: 'silver' }] },
+      { id: 'P', seats: 44, ranges: [{ s: 1, e: 11, tier: 'silver' }, { s: 12, e: 33, tier: 'gold' }, { s: 34, e: 44, tier: 'silver' }] },
+      { id: 'Q', seats: 44, ranges: [{ s: 1, e: 11, tier: 'silver' }, { s: 12, e: 33, tier: 'gold' }, { s: 34, e: 44, tier: 'silver' }] },
+      { id: 'R', seats: 44, ranges: [{ s: 1, e: 11, tier: 'silver' }, { s: 12, e: 33, tier: 'gold' }, { s: 34, e: 44, tier: 'silver' }] },
+      { id: 'S', seats: 44, ranges: [{ s: 1, e: 11, tier: 'silver' }, { s: 20, e: 33, tier: 'gold' }, { s: 34, e: 44, tier: 'silver' }] },
+    ];
+
+    const B1_BLOCKS = [
+      { id: '01', name: 'Block 1', tier: 'vip', seats: 18, seatStart: 1 },
+      { id: '02', name: 'Block 2', tier: 'vip', seats: 14, seatStart: 1 },
+      { id: '03', name: 'Block 3', tier: 'vip', seats: 18, seatStart: 1 },
+      { id: '04', name: 'Block 4', tier: 'platinum', seats: 15, seatStart: 1 },
+      { id: '05', name: 'Block 5', tier: 'platinum', seats: 15, seatStart: 1 },
+      { id: '06', name: 'Block 6', tier: 'silver', seats: 15, seatStart: 1 },
+      { id: '07', name: 'Block 7', tier: 'silver', seats: 15, seatStart: 1 },
+      { id: '08', name: 'Block 8', tier: 'bronze', seats: 10, seatStart: 1 },
+      { id: '09', name: 'Block 9', tier: 'bronze', seats: 10, seatStart: 1 },
+      { id: '10', name: 'Block 10', tier: 'bronze', seats: 6, seatStart: 1 },
+      { id: '11', name: 'Block 11', tier: 'bronze', seats: 6, seatStart: 1 },
+    ];
+
+    const B2_ROWS = [
+      { id: 'A', seats: 30, tier: 'bronze' }, { id: 'B', seats: 32, tier: 'bronze' },
+      { id: 'C', seats: 34, tier: 'bronze' }, { id: 'D', seats: 36, tier: 'bronze' },
+      { id: 'E', seats: 38, tier: 'bronze' }, { id: 'F', seats: 40, tier: 'bronze' },
+      { id: 'G', seats: 40, tier: 'bronze' }, { id: 'H', seats: 42, tier: 'bronze' },
+      { id: 'I', seats: 42, tier: 'bronze' }, { id: 'J', seats: 29, tier: 'bronze' },
+    ];
+
+    let selectedSeats = [];
+    let bookedSeats = JSON.parse(localStorage.getItem('ros_booked') || '[]');
+    let allBookings = JSON.parse(localStorage.getItem('ros_bookings') || '[]');
+    let currentFloor = 'gf';
+    let currentB1Block = null;
+    let adminToken = localStorage.getItem('ros_admin_token') || null;
+    // Flat key-value config (merged defaults + DB overrides). Keys use dot notation,
+    // e.g. "bank.account_number", "event.name", "hero.title_html".
+    let appConfig = {
+      'bank.name': 'Commercial Bank of Ceylon',
+      'bank.account_name': 'Ananda Sastralaya OBA',
+      'bank.account_number': '1234567890',
+      'bank.branch': 'Colombo 07',
+      'contact.whatsapp_display': '+94 77 294 4014',
+      'contact.whatsapp_link': 'https://wa.me/94772944014',
+    };
+    function cfg(k, fallback = '') { return (appConfig[k] != null && appConfig[k] !== '') ? appConfig[k] : fallback; }
+
+    async function loadConfig() {
+      if (!USE_BACKEND) { applyConfigToDom(); return; }
+      try {
+        const fetched = await api.get('/api/config');
+        appConfig = { ...appConfig, ...fetched };
+      } catch (e) { console.warn('Using default config:', e.message); }
+      applyConfigToDom();
+    }
+
+    function applyConfigToDom() {
+      // Generic [data-bind*] hydration
+      document.querySelectorAll('[data-bind]').forEach(el => {
+        const v = appConfig[el.dataset.bind];
+        if (v != null && v !== '') el.textContent = v;
+      });
+      document.querySelectorAll('[data-bind-html]').forEach(el => {
+        const v = appConfig[el.dataset.bindHtml];
+        if (v != null && v !== '') el.innerHTML = v;
+      });
+      document.querySelectorAll('[data-bind-src]').forEach(el => {
+        const v = appConfig[el.dataset.bindSrc];
+        if (v) { el.src = (v.startsWith('/') && BACKEND_URL) ? BACKEND_URL + v : v; el.style.display = ''; }
+      });
+      document.querySelectorAll('[data-bind-href]').forEach(el => {
+        const v = appConfig[el.dataset.bindHref];
+        if (v) el.href = v;
+      });
+
+      // Bank / WhatsApp fields (inside the checkout card)
+      const q = (id) => document.getElementById(id);
+      if (q('bank-name')) q('bank-name').innerHTML = `<strong>${cfg('bank.name')}</strong>`;
+      if (q('bank-account-name')) q('bank-account-name').innerHTML = `<strong>${cfg('bank.account_name')}</strong>`;
+      if (q('bank-account-number')) q('bank-account-number').innerHTML = `<strong>${cfg('bank.account_number')}</strong>`;
+      if (q('bank-branch')) q('bank-branch').innerHTML = `<strong>${cfg('bank.branch')}</strong>`;
+      if (q('whatsapp-link')) q('whatsapp-link').href = cfg('contact.whatsapp_link');
+      if (q('whatsapp-display')) q('whatsapp-display').textContent = cfg('contact.whatsapp_display');
+    }
+
+    async function refreshBookedSeats() {
+      if (!USE_BACKEND) return;
+      try {
+        const { codes } = await api.get('/api/seats/booked');
+        bookedSeats = codes;
+        buildGFMap(); buildB2Map(); buildB1Blocks();
+        if (currentB1Block) buildB1Seats(currentB1Block);
+      } catch (e) { console.warn('Failed to refresh booked seats:', e.message); }
+    }
+
+    // ============================================================
+    // SEAT GENERATION
+    // ============================================================
+    function getTierForSeat(row, seatNum) {
+      for (const range of row.ranges) {
+        if (seatNum >= range.s && seatNum <= range.e) return range.tier;
+      }
+      return null;
+    }
+
+    function getSeatCode(floor, rowId, seatNum, blockId) {
+      if (floor === 'GF') return `ROS2026 GF ${rowId}${seatNum}`;
+      if (floor === 'B1') return `ROS2026 B1 ${blockId} E${seatNum}`;
+      if (floor === 'B2') return `ROS2026 B2 01 ${rowId}${seatNum}`;
+    }
+
+    function isBooked(code) { return bookedSeats.includes(code); }
+    function isSelected(code) { return selectedSeats.find(s => s.code === code); }
+
+    function buildGFMap() {
+      const container = document.getElementById('gf-map');
+      container.innerHTML = '';
+      GF_ROWS.forEach(row => {
+        const rowEl = document.createElement('div');
+        rowEl.className = 'seat-row';
+        const label = document.createElement('div');
+        label.className = 'row-label';
+        label.textContent = row.id;
+        rowEl.appendChild(label);
+        for (let i = 1; i <= row.seats; i++) {
+          const tier = getTierForSeat(row, i);
+          if (!tier) { const sp = document.createElement('div'); sp.style.cssText = 'width:16px;height:16px;'; rowEl.appendChild(sp); continue; }
+          const code = getSeatCode('GF', row.id, i);
+          const seat = document.createElement('div');
+          seat.className = `seat ${tier}${isBooked(code) ? ' booked' : ''}${isSelected(code) ? ' selected' : ''}`;
+          seat.title = `${code} — Rs. ${TIERS[tier].price.toLocaleString()}`;
+          seat.onclick = () => toggleSeat(seat, code, tier, 'GF');
+          rowEl.appendChild(seat);
+        }
+        const label2 = document.createElement('div');
+        label2.className = 'row-label';
+        label2.textContent = row.id;
+        rowEl.appendChild(label2);
+        container.appendChild(rowEl);
+      });
+    }
+
+    function buildB2Map() {
+      const container = document.getElementById('gf-map-b2');
+      container.innerHTML = '';
+      B2_ROWS.forEach(row => {
+        const rowEl = document.createElement('div');
+        rowEl.className = 'seat-row';
+        const label = document.createElement('div');
+        label.className = 'row-label';
+        label.textContent = row.id;
+        rowEl.appendChild(label);
+        for (let i = 1; i <= row.seats; i++) {
+          const code = getSeatCode('B2', row.id, i);
+          const seat = document.createElement('div');
+          seat.className = `seat bronze${isBooked(code) ? ' booked' : ''}${isSelected(code) ? ' selected' : ''}`;
+          seat.title = `${code} — Rs. 1,500`;
+          seat.onclick = () => toggleSeat(seat, code, 'bronze', 'B2');
+          rowEl.appendChild(seat);
+        }
+        const label2 = document.createElement('div');
+        label2.className = 'row-label';
+        label2.textContent = row.id;
+        rowEl.appendChild(label2);
+        container.appendChild(rowEl);
+      });
+    }
+
+    function buildB1Blocks() {
+      const container = document.getElementById('b1-blocks');
+      container.innerHTML = '';
+      B1_BLOCKS.forEach(block => {
+        const bookedCount = bookedSeats.filter(c => c.includes(`B1 ${block.id}`)).length;
+        const available = block.seats - bookedCount;
+        const full = available === 0;
+        const tier = TIERS[block.tier];
+        const el = document.createElement('div');
+        el.className = `balcony-block${full ? ' booked-full' : ''}`;
+        el.style.background = `rgba(${hexToRgb(tier.color)},0.08)`;
+        el.style.borderColor = `rgba(${hexToRgb(tier.color)},0.2)`;
+        el.innerHTML = `
+      <div class="block-count">${available}</div>
+      <div class="block-name" style="color:${tier.color}">${block.name}</div>
+      <div class="block-price">${block.tier === 'vip' ? 'VIP' : 'Rs. ' + tier.price.toLocaleString()}</div>
+    `;
+        el.onclick = () => !full && selectB1Block(block, el);
+        container.appendChild(el);
+      });
+    }
+
+    function selectB1Block(block, el) {
+      document.querySelectorAll('.balcony-block').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+      currentB1Block = block;
+      buildB1Seats(block);
+      document.getElementById('b1-seats-panel').style.display = 'block';
+    }
+
+    function buildB1Seats(block) {
+      const grid = document.getElementById('b1-seats-grid');
+      document.getElementById('b1-selected-block-title').textContent = `${block.name} — ${TIERS[block.tier].name} (${block.tier === 'vip' ? 'VIP' : 'Rs. ' + TIERS[block.tier].price.toLocaleString()})`;
+      grid.innerHTML = '';
+      const tier = block.tier;
+      const color = TIERS[tier].color;
+      for (let i = 1; i <= block.seats; i++) {
+        const code = getSeatCode('B1', null, i, block.id);
+        const seat = document.createElement('div');
+        seat.className = `b-seat${isBooked(code) ? ' booked' : ''}${isSelected(code) ? ' selected' : ''}`;
+        seat.style.background = isSelected(code) ? color : `rgba(${hexToRgb(color)},0.15)`;
+        seat.style.borderColor = `rgba(${hexToRgb(color)},0.3)`;
+        seat.style.color = color;
+        seat.textContent = `E${i}`;
+        seat.onclick = () => toggleSeat(seat, code, tier, 'B1', block.id, i, color);
+        grid.appendChild(seat);
+      }
+    }
+
+    function toggleSeat(el, code, tier, floor, blockId, seatNum, color) {
+      if (isBooked(code)) return;
+      const idx = selectedSeats.findIndex(s => s.code === code);
+      if (idx >= 0) {
+        selectedSeats.splice(idx, 1);
+        el.classList.remove('selected');
+        if (color) { el.style.background = `rgba(${hexToRgb(color)},0.15)`; el.style.color = color; }
+      } else {
+        selectedSeats.push({ code, tier, floor });
+        el.classList.add('selected');
+        if (color) { el.style.background = color; el.style.color = '#000'; }
+      }
+      updateCart();
+    }
+
+    function updateCart() {
+      document.getElementById('cart-count').textContent = selectedSeats.length;
+      const total = selectedSeats.reduce((a, s) => a + (TIERS[s.tier].price || 0), 0);
+      document.getElementById('cart-total').textContent = total.toLocaleString();
+      document.getElementById('cart-seats-list').textContent = selectedSeats.length ? selectedSeats.map(s => s.code).join(' · ') : 'No seats selected yet';
+    }
+
+    function clearSelection() {
+      selectedSeats = [];
+      buildGFMap(); buildB2Map(); buildB1Blocks();
+      if (currentB1Block) buildB1Seats(currentB1Block);
+      updateCart();
+    }
+
+    // ============================================================
+    // CHECKOUT
+    // ============================================================
+    function proceedToCheckout() {
+      if (selectedSeats.length === 0) { alert('Please select at least one seat.'); return; }
+      updateOrderSummary();
+      showPage('checkout');
+    }
+
+    function updateOrderSummary() {
+      const container = document.getElementById('order-items');
+      container.innerHTML = '';
+      let total = 0;
+      selectedSeats.forEach(s => {
+        const tier = TIERS[s.tier];
+        total += tier.price || 0;
+        container.innerHTML += `
+      <div class="order-item">
+        <div>
+          <div class="order-seat-code">${s.code}</div>
+          <div class="order-seat-tier">${s.floor === 'GF' ? 'Ground Floor' : s.floor === 'B1' ? 'Balcony One' : 'Balcony Two'} · ${tier.name}</div>
+        </div>
+        <div class="order-price">${tier.price ? 'Rs. ' + tier.price.toLocaleString() : 'VIP'}</div>
+      </div>`;
+      });
+      document.getElementById('order-total-amt').textContent = total.toLocaleString();
+    }
+
+    function showPendingModal(bookingId, email) {
+      // Remember so the buyer can come back and upload/replace the receipt later.
+      localStorage.setItem('ros_pending_booking', JSON.stringify({ id: bookingId, email }));
+
+      document.getElementById('modal-title').textContent = 'Booking Received';
+      document.getElementById('modal-spinner').style.display = 'none';
+      document.getElementById('modal-msg').innerHTML = `
+    <div style="text-align:left;">
+      <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:1rem;margin-bottom:1rem;">
+        <div style="font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;">Your Booking ID</div>
+        <div style="font-family:monospace;font-size:22px;color:var(--gold);margin-top:4px;">${bookingId}</div>
+      </div>
+      <div style="font-size:13px;color:var(--cream);line-height:1.7;margin-bottom:1rem;">
+        <strong style="color:var(--gold);">Step 1 — Transfer to:</strong><br>
+        ${cfg('bank.name')} &middot; Acc: <strong style="font-family:monospace;">${cfg('bank.account_number')}</strong> &middot; ${cfg('bank.branch')}
+      </div>
+
+      <div style="background:rgba(37,211,102,0.06);border:1px solid rgba(37,211,102,0.35);border-radius:8px;padding:1rem;margin-bottom:1rem;">
+        <div style="font-size:11px;color:#5DA85D;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.5rem;"><strong>Step 2 — Upload your receipt</strong></div>
+        <div style="font-size:12px;color:var(--cream);line-height:1.6;margin-bottom:0.75rem;">
+          Upload a screenshot or photo of your bank transfer slip so we can confirm your booking quickly.
+        </div>
+        <div id="receipt-upload-zone" style="border:2px dashed rgba(37,211,102,0.35);border-radius:8px;padding:1rem;text-align:center;cursor:pointer;transition:all 0.2s;" onclick="document.getElementById('receipt-file-input').click();">
+          <div id="receipt-zone-label" style="color:var(--cream);font-size:13px;">
+            <div style="font-size:28px;margin-bottom:4px;">📎</div>
+            <div>Click to choose an image</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px;">JPG or PNG, max 5MB</div>
+          </div>
+        </div>
+        <input type="file" id="receipt-file-input" accept="image/*" style="display:none;" onchange="uploadReceipt('${bookingId}','${email}',this)">
+        <div id="receipt-status" style="font-size:12px;margin-top:0.5rem;"></div>
+
+        <div style="font-size:11px;color:var(--muted);margin-top:0.75rem;line-height:1.5;">
+          Or send the receipt on WhatsApp to
+          <a href="${cfg('contact.whatsapp_link')}" target="_blank" style="color:#25D366;">${cfg('contact.whatsapp_display')}</a>
+          quoting Booking ID <strong style="color:var(--cream);">${bookingId}</strong>.
+        </div>
+      </div>
+
+      <div style="font-size:12px;color:var(--muted);line-height:1.6;background:var(--dark3);padding:0.75rem;border-radius:6px;">
+        A confirmation email has been sent to <strong style="color:var(--cream);">${email}</strong>. Your QR tickets will be emailed once we confirm your payment.
+      </div>
+      <div style="text-align:center;margin-top:1.25rem;">
+        <button class="btn-primary" onclick="document.getElementById('modal-processing').classList.remove('open');showPage('booking');">Done</button>
+      </div>
+    </div>`;
+    }
+
+    async function uploadReceipt(bookingId, email, input) {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const status = document.getElementById('receipt-status');
+      const label = document.getElementById('receipt-zone-label');
+      status.style.color = 'var(--muted)';
+      status.textContent = 'Uploading receipt…';
+      try {
+        const fd = new FormData();
+        fd.append('email', email);
+        fd.append('file', file);
+        const r = await fetch(BACKEND_URL + `/api/bookings/${encodeURIComponent(bookingId)}/receipt`, {
+          method: 'POST', body: fd,
+        });
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(data.error || r.statusText);
+        status.style.color = '#5DA85D';
+        status.innerHTML = '✓ Receipt uploaded. We\'ll confirm your booking soon.';
+        if (label) label.innerHTML = `<div style="font-size:28px;margin-bottom:4px;">✅</div><div style="color:#5DA85D;">${file.name}</div><div style="font-size:11px;color:var(--muted);margin-top:4px;">Click to replace</div>`;
+      } catch (err) {
+        status.style.color = '#C06060';
+        status.textContent = 'Upload failed: ' + err.message;
+      }
+      input.value = '';
+    }
+
+    // Allow the buyer to resume: open page with ?booking=ROS123 OR remember the last
+    // pending booking in localStorage. Shows a small banner with the upload option.
+    function checkPendingBooking() {
+      const params = new URLSearchParams(location.search);
+      const urlId = params.get('booking');
+      let saved = null;
+      try { saved = JSON.parse(localStorage.getItem('ros_pending_booking') || 'null'); } catch { }
+      const id = urlId || saved?.id;
+      if (!id) return;
+
+      const existing = document.getElementById('resume-banner');
+      if (existing) existing.remove();
+
+      const banner = document.createElement('div');
+      banner.id = 'resume-banner';
+      banner.style.cssText = 'position:sticky;top:64px;z-index:90;background:linear-gradient(90deg,rgba(201,168,76,0.18),rgba(201,168,76,0.08));border-bottom:1px solid rgba(201,168,76,0.35);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;';
+      banner.innerHTML = `
+    <div style="font-size:12px;color:var(--cream);">
+      <strong style="color:var(--gold);">Pending booking</strong>
+      <span style="font-family:monospace;margin-left:8px;">${id}</span>
+      <span style="color:var(--muted);margin-left:8px;">— upload your transfer receipt to confirm.</span>
+    </div>
+    <div style="display:flex;gap:0.5rem;align-items:center;">
+      <button class="btn-sm" onclick="openResumeUpload('${id}', ${JSON.stringify(saved?.email || '')})">Upload Receipt →</button>
+      <button class="btn-sm btn-danger-sm" onclick="dismissResumeBanner()">Dismiss</button>
+    </div>`;
+      document.body.insertBefore(banner, document.body.firstChild.nextSibling);
+    }
+
+    function dismissResumeBanner() {
+      const b = document.getElementById('resume-banner'); if (b) b.remove();
+      localStorage.removeItem('ros_pending_booking');
+    }
+
+    function openResumeUpload(bookingId, savedEmail) {
+      const email = (savedEmail || prompt('Enter the email you used for this booking:') || '').trim();
+      if (!email) return;
+      document.getElementById('modal-processing').classList.add('open');
+      showPendingModal(bookingId, email);
+    }
+
+    async function confirmBooking() {
+      const fname = document.getElementById('f-fname').value.trim();
+      const lname = document.getElementById('f-lname').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const nic = document.getElementById('f-nic').value.trim();
+      if (!fname || !lname || !email || !phone) { alert('Please fill all required fields.'); return; }
+      if (!email.includes('@')) { alert('Please enter a valid email.'); return; }
+
+      document.getElementById('modal-processing').classList.add('open');
+      document.getElementById('modal-title').textContent = 'Creating Booking';
+      document.getElementById('modal-msg').textContent = 'Please wait...';
+      document.getElementById('modal-spinner').style.display = 'block';
+      const fullName = fname + ' ' + lname;
+
+      if (USE_BACKEND) {
+        try {
+          const payload = {
+            name: fullName, email, phone, nic: nic || null,
+            seats: selectedSeats.map(s => ({ code: s.code, tier: s.tier, floor: s.floor })),
+          };
+          const { booking } = await api.post('/api/bookings', payload);
+          showPendingModal(booking.id, email);
+          selectedSeats = [];
+          updateCart();
+          refreshBookedSeats();
+        } catch (err) {
+          document.getElementById('modal-processing').classList.remove('open');
+          alert('Booking failed: ' + err.message);
+        }
+        return;
+      }
+
+      // Offline / localStorage fallback — still only "pending" (no tickets delivered).
+      setTimeout(() => {
+        const bookingId = 'ROS' + Date.now().toString().slice(-6);
+        const booking = {
+          id: bookingId, name: fullName, email, phone, nic,
+          seats: [...selectedSeats],
+          total: selectedSeats.reduce((a, s) => a + (TIERS[s.tier].price || 0), 0),
+          payment: 'bank', status: 'pending',
+          date: new Date().toISOString()
+        };
+        allBookings.push(booking);
+        selectedSeats.forEach(s => bookedSeats.push(s.code));
+        localStorage.setItem('ros_booked', JSON.stringify(bookedSeats));
+        localStorage.setItem('ros_bookings', JSON.stringify(allBookings));
+
+        showPendingModal(bookingId, email);
+        selectedSeats = [];
+        updateCart();
+        buildGFMap(); buildB2Map(); buildB1Blocks();
+      }, 1200);
+    }
+
+    // ============================================================
+    // TICKET GENERATION
+    // ============================================================
+    function generateTickets(booking) {
+      const container = document.getElementById('tickets-container');
+      const noTickets = document.getElementById('no-tickets');
+      const successHeader = document.getElementById('ticket-success-header');
+      document.getElementById('ticket-email-note').textContent = `Tickets sent to ${booking.email}`;
+      noTickets.style.display = 'none';
+      successHeader.style.display = 'block';
+      container.innerHTML = '';
+
+      booking.seats.forEach((seat, idx) => {
+        const tier = TIERS[seat.tier];
+        const floorName = seat.floor === 'GF' ? 'Ground Floor' : seat.floor === 'B1' ? 'Balcony One' : 'Balcony Two';
+        const ticketId = document.createElement('div');
+        ticketId.innerHTML = `
+      <div class="ticket-card" id="ticket-${booking.id}-${idx}">
+        <div class="ticket-header">
+          <div>
+            <div class="ticket-event">Ananda Sastralaya Old Boys Association</div>
+            <div class="ticket-name">Rhythm of Sastra</div>
+            <div class="ticket-chapter">Chapter 04 · Where Rhythm Embraces the Soul</div>
+          </div>
+          <div style="text-align:right;">
+            <span class="ticket-tier-badge" style="background:${tier.badgeBg};color:${tier.color};">${tier.name}</span>
+          </div>
+        </div>
+        <div class="ticket-body">
+          <div class="ticket-details">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div class="ticket-field">
+                <div class="ticket-field-label">Ticket Holder</div>
+                <div class="ticket-field-value">${booking.name}</div>
+              </div>
+              <div class="ticket-field">
+                <div class="ticket-field-label">Floor</div>
+                <div class="ticket-field-value">${floorName}</div>
+              </div>
+              <div class="ticket-field">
+                <div class="ticket-field-label">Seat Code</div>
+                <div class="ticket-seat-code">${seat.code}</div>
+              </div>
+              <div class="ticket-field">
+                <div class="ticket-field-label">Price Paid</div>
+                <div class="ticket-field-value">${tier.price ? 'Rs. ' + tier.price.toLocaleString() : 'VIP'}</div>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-qr">
+            <div id="qr-${booking.id}-${idx}"></div>
+            <div class="ticket-qr-label">Scan at entry</div>
+          </div>
+        </div>
+        <div class="ticket-tear"><div class="tear-circle"></div><div class="tear-line"></div><div class="tear-circle"></div></div>
+        <div class="ticket-footer">
+          <div class="ticket-id">ID: ${booking.id} · Seat ${idx + 1} of ${booking.seats.length}</div>
+          <div style="font-size:10px;color:var(--muted);">Valid for one entry only</div>
+        </div>
+      </div>`;
+        container.appendChild(ticketId);
+
+        setTimeout(() => {
+          try {
+            new QRCode(document.getElementById(`qr-${booking.id}-${idx}`), {
+              text: seat.code,
+              width: 120, height: 120,
+              colorDark: '#000000', colorLight: '#ffffff',
+              correctLevel: QRCode.CorrectLevel.H
+            });
+          } catch (e) { }
+        }, 100);
+      });
+
+      showPage('tickets');
+    }
+
+    // ============================================================
+    // ADMIN
+    // ============================================================
+    async function adminLogin() {
+      const pass = document.getElementById('admin-pass').value;
+      if (USE_BACKEND) {
+        try {
+          const { token } = await api.post('/api/admin/login', { password: pass });
+          adminToken = token;
+          localStorage.setItem('ros_admin_token', token);
+          document.getElementById('admin-login-screen').style.display = 'none';
+          document.getElementById('admin-dashboard').style.display = 'block';
+          renderAdminDashboard();
+        } catch (e) { alert('Login failed: ' + e.message); }
+        return;
+      }
+      if (pass === 'admin2026') {
+        document.getElementById('admin-login-screen').style.display = 'none';
+        document.getElementById('admin-dashboard').style.display = 'block';
+        renderAdminDashboard();
+      } else {
+        alert('Incorrect password.');
+      }
+    }
+
+    function adminLogout() {
+      adminToken = null;
+      localStorage.removeItem('ros_admin_token');
+      document.getElementById('admin-login-screen').style.display = 'block';
+      document.getElementById('admin-dashboard').style.display = 'none';
+      document.getElementById('admin-pass').value = '';
+    }
+
+    async function fetchAdminBookings() {
+      if (USE_BACKEND) {
+        try {
+          const { bookings } = await api.get('/api/admin/bookings', adminToken);
+          return bookings.map(b => ({
+            id: b.id, name: b.name, email: b.email, phone: b.phone, nic: b.nic,
+            seats: b.seats, total: b.total, status: b.status, date: b.created_at
+          }));
+        } catch (e) {
+          if (String(e.message).includes('Unauthorized')) adminLogout();
+          return [];
+        }
+      }
+      return JSON.parse(localStorage.getItem('ros_bookings') || '[]');
+    }
+
+    async function renderAdminDashboard() {
+      const bookings = await fetchAdminBookings();
+      const totalSeats = bookings.reduce((a, b) => a + b.seats.length, 0);
+      const totalRevenue = bookings.filter(b => b.status !== 'cancelled').reduce((a, b) => a + b.total, 0);
+      const confirmed = bookings.filter(b => b.status === 'confirmed').length;
+      const stats = document.getElementById('admin-stats');
+      stats.innerHTML = `
+    <div class="stat-card"><div class="stat-label">Total Bookings</div><div class="stat-value">${bookings.length}</div></div>
+    <div class="stat-card"><div class="stat-label">Tickets Sold</div><div class="stat-value">${totalSeats}</div></div>
+    <div class="stat-card"><div class="stat-label">Revenue</div><div class="stat-value" style="font-size:22px;">Rs.${(totalRevenue / 1000).toFixed(0)}K</div></div>
+    <div class="stat-card"><div class="stat-label">Confirmed</div><div class="stat-value" style="color:#5DA85D;">${confirmed}</div></div>
+    <div class="stat-card"><div class="stat-label">Capacity Left</div><div class="stat-value">${1269 - totalSeats}</div><div class="stat-sub">of 1,269 total</div></div>
+  `;
+      window._adminBookings = bookings;
+      renderBookingsTable(bookings);
+    }
+
+    let filteredData = [];
+    function renderBookingsTable(bookings) {
+      filteredData = bookings;
+      const tbody = document.getElementById('bookings-tbody');
+      tbody.innerHTML = '';
+      if (!bookings.length) {
+        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center;padding:3rem;color:var(--muted);">No bookings yet</td></tr>';
+        return;
+      }
+      bookings.forEach(b => {
+        const hasReceipt = !!b.receipt_path;
+        const receiptCell = hasReceipt
+          ? `<button class="btn-sm" onclick="viewReceipt('${b.id}')" title="Open receipt">🧾 View</button>`
+          : `<span style="color:var(--muted);font-size:11px;">—</span>`;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+      <td style="font-family:monospace;font-size:12px;color:var(--gold);">${b.id}</td>
+      <td>${b.name}</td>
+      <td style="color:var(--muted);font-size:12px;">${b.email}</td>
+      <td style="font-size:12px;">${b.phone}</td>
+      <td style="font-size:11px;">${b.seats.map(s => `<span style="background:rgba(201,168,76,0.1);padding:2px 6px;border-radius:3px;margin:1px;display:inline-block;">${s.code}</span>`).join('')}</td>
+      <td><span style="color:${TIERS[b.seats[0].tier].color};font-size:11px;text-transform:uppercase;letter-spacing:1px;">${TIERS[b.seats[0].tier].name}</span></td>
+      <td style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:16px;">Rs.${b.total.toLocaleString()}</td>
+      <td>${receiptCell}</td>
+      <td><span class="status-badge status-${b.status}">${b.status}</span></td>
+      <td>
+        <div style="display:flex;gap:6px;">
+          <button class="btn-sm" onclick="changeStatus('${b.id}','confirmed')">Confirm</button>
+          <button class="btn-sm btn-danger-sm" onclick="changeStatus('${b.id}','cancelled')">Cancel</button>
+        </div>
+      </td>`;
+        tbody.appendChild(row);
+      });
+    }
+
+    async function viewReceipt(bookingId) {
+      try {
+        const { url } = await api.get(`/api/admin/bookings/${encodeURIComponent(bookingId)}/receipt-url`, adminToken);
+        window.open(url, '_blank', 'noopener');
+      } catch (e) {
+        alert('Failed to open receipt: ' + e.message);
+      }
+    }
+
+    function getAdminCache() {
+      if (USE_BACKEND) return window._adminBookings || [];
+      return JSON.parse(localStorage.getItem('ros_bookings') || '[]');
+    }
+
+    function filterBookings(query) {
+      const all = getAdminCache();
+      const q = query.toLowerCase();
+      renderBookingsTable(all.filter(b => b.name.toLowerCase().includes(q) || b.email.toLowerCase().includes(q) || b.id.toLowerCase().includes(q) || b.seats.some(s => s.code.toLowerCase().includes(q))));
+    }
+
+    function filterByStatus(status) {
+      const all = getAdminCache();
+      renderBookingsTable(status ? all.filter(b => b.status === status) : all);
+    }
+
+    function filterByFloor(floor) {
+      const all = getAdminCache();
+      renderBookingsTable(floor ? all.filter(b => b.seats.some(s => s.floor === floor)) : all);
+    }
+
+    async function changeStatus(id, status) {
+      if (USE_BACKEND) {
+        try {
+          await api.patch(`/api/admin/bookings/${id}/status`, { status }, adminToken);
+          renderAdminDashboard();
+        } catch (e) { alert('Failed: ' + e.message); }
+        return;
+      }
+      const all = JSON.parse(localStorage.getItem('ros_bookings') || '[]');
+      const booking = all.find(b => b.id === id);
+      if (booking) { booking.status = status; localStorage.setItem('ros_bookings', JSON.stringify(all)); renderAdminDashboard(); }
+    }
+
+    async function exportCSV() {
+      if (USE_BACKEND) {
+        const r = await fetch(BACKEND_URL + '/api/admin/export.csv', { headers: { Authorization: 'Bearer ' + adminToken } });
+        if (!r.ok) { alert('Export failed'); return; }
+        const blob = await r.blob();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'ROS2026_bookings.csv';
+        a.click();
+        return;
+      }
+      const all = JSON.parse(localStorage.getItem('ros_bookings') || '[]');
+      const rows = [['Booking ID', 'Name', 'Email', 'Phone', 'NIC', 'Seats', 'Total', 'Status', 'Date']];
+      all.forEach(b => rows.push([b.id, b.name, b.email, b.phone, b.nic, b.seats.map(s => s.code).join(';'), b.total, b.status, b.date]));
+      const csv = rows.map(r => r.join(',')).join('\n');
+      const a = document.createElement('a');
+      a.href = 'data:text/csv,' + encodeURIComponent(csv);
+      a.download = 'ROS2026_bookings.csv';
+      a.click();
+    }
+
+    // ============================================================
+    // ADMIN — content editor (CMS for landing/booking page)
+    // ============================================================
+    function showAdminSubtab(name) {
+      document.querySelectorAll('.admin-subtab').forEach(b => b.classList.toggle('active', b.dataset.subtab === name));
+      document.querySelectorAll('.admin-subtab-pane').forEach(p => p.style.display = 'none');
+      document.getElementById('admin-subtab-' + name).style.display = 'block';
+      if (name === 'content') renderContentEditor();
+    }
+
+    // Groups of editable settings. Each group = one section in the form.
+    const CONTENT_SCHEMA = [
+      {
+        title: 'Event Details', sub: 'Shown everywhere — page titles, hero, footer',
+        fields: [
+          { key: 'event.name', label: 'Event Name', type: 'text' },
+          { key: 'event.chapter', label: 'Chapter Label', type: 'text', hint: 'e.g. "Chapter 04 · 2026"' },
+          { key: 'event.tagline', label: 'Tagline', type: 'text', full: true },
+          { key: 'event.organizer', label: 'Organizer', type: 'text', full: true },
+          { key: 'event.date_iso', label: 'Event Date & Time (ISO)', type: 'datetime', hint: 'Shown in countdown + info tile' },
+          { key: 'event.time_label', label: 'Time Label', type: 'text', hint: 'Short display text (e.g. "6:30 PM")' },
+          { key: 'event.venue', label: 'Venue Name', type: 'text' },
+          { key: 'event.venue_location', label: 'Venue Location', type: 'text' },
+        ]
+      },
+      {
+        title: 'Hero Section', sub: 'Top of the landing / booking page',
+        fields: [
+          { key: 'hero.eyebrow', label: 'Small heading above title', type: 'text' },
+          { key: 'hero.title_html', label: 'Hero Title (HTML allowed)', type: 'textarea', full: true, hint: 'Use <em>text</em> for gold italic, <br> for line break' },
+          { key: 'hero.description', label: 'Hero Description', type: 'textarea', full: true },
+          { key: 'hero.bullet_1_html', label: '"In Brief" Bullet 1 (HTML)', type: 'text', full: true },
+          { key: 'hero.bullet_2_html', label: '"In Brief" Bullet 2 (HTML)', type: 'text', full: true },
+          { key: 'hero.bullet_3_html', label: '"In Brief" Bullet 3 (HTML)', type: 'text', full: true },
+        ]
+      },
+      {
+        title: 'About Section', sub: 'Landing page only',
+        fields: [
+          { key: 'about.eyebrow', label: 'Small heading', type: 'text' },
+          { key: 'about.title_html', label: 'Section Title (HTML)', type: 'text', hint: 'Use <em>text</em> for gold italic' },
+          { key: 'about.body', label: 'Body Copy', type: 'textarea', full: true },
+        ]
+      },
+      {
+        title: 'Highlights', sub: 'Three feature cards on the landing page',
+        fields: [
+          { key: 'highlights.1_title', label: 'Card 1 Title', type: 'text' },
+          { key: 'highlights.1_body', label: 'Card 1 Description', type: 'textarea' },
+          { key: 'highlights.2_title', label: 'Card 2 Title', type: 'text' },
+          { key: 'highlights.2_body', label: 'Card 2 Description', type: 'textarea' },
+          { key: 'highlights.3_title', label: 'Card 3 Title', type: 'text' },
+          { key: 'highlights.3_body', label: 'Card 3 Description', type: 'textarea' },
+        ]
+      },
+      {
+        title: 'Logo & Images', sub: 'Upload new images or paste a URL',
+        fields: [
+          { key: 'logo.text', label: 'Fallback Logo Text (when no image)', type: 'text' },
+          { key: 'logo.url', label: 'Logo Image', type: 'image', full: true },
+          { key: 'hero.image_url', label: 'Hero / Cover Image (optional)', type: 'image', full: true },
+        ]
+      },
+      {
+        title: 'Bank Transfer Details', sub: 'Shown at checkout and in the "awaiting payment" email',
+        fields: [
+          { key: 'bank.name', label: 'Bank Name', type: 'text' },
+          { key: 'bank.account_name', label: 'Account Holder', type: 'text' },
+          { key: 'bank.account_number', label: 'Account Number', type: 'text' },
+          { key: 'bank.branch', label: 'Branch', type: 'text' },
+        ]
+      },
+      {
+        title: 'Contact & Social', sub: 'Footer and email confirmations',
+        fields: [
+          { key: 'contact.email', label: 'Contact Email', type: 'text' },
+          { key: 'contact.whatsapp_display', label: 'WhatsApp Number (display)', type: 'text', hint: 'e.g. "+94 77 294 4014"' },
+          { key: 'contact.whatsapp_link', label: 'WhatsApp Link', type: 'text', hint: 'e.g. "https://wa.me/94772944014"' },
+          { key: 'social.facebook', label: 'Facebook URL', type: 'text', hint: 'Leave empty to hide icon' },
+          { key: 'social.instagram', label: 'Instagram URL', type: 'text', hint: 'Leave empty to hide icon' },
+          { key: 'social.youtube', label: 'YouTube URL', type: 'text', hint: 'Leave empty to hide icon' },
+        ]
+      },
+    ];
+
+    let _ceMerged = {};
+    let _ceDefaults = {};
+
+    async function renderContentEditor() {
+      const root = document.getElementById('content-editor');
+      if (!USE_BACKEND) {
+        root.innerHTML = `<div class="ce-section"><div style="color:var(--muted);font-size:13px;">Content editing requires the backend. Set <code style="color:var(--gold);">BACKEND_URL</code> at the top of this HTML to enable.</div></div>`;
+        return;
+      }
+      root.innerHTML = `<div class="ce-section" style="text-align:center;color:var(--muted);">Loading settings…</div>`;
+      try {
+        const { defaults, merged } = await api.get('/api/admin/settings', adminToken);
+        _ceDefaults = defaults; _ceMerged = merged;
+      } catch (e) {
+        root.innerHTML = `<div class="ce-section" style="color:#C06060;">Failed to load: ${e.message}</div>`;
+        return;
+      }
+
+      const resolveUrl = (v) => !v ? '' : (v.startsWith('/') ? BACKEND_URL + v : v);
+      const htmlFor = (f) => {
+        const current = _ceMerged[f.key] ?? '';
+        const safe = String(current).replace(/"/g, '&quot;');
+        const safeText = String(current).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const hint = f.hint ? `<div class="hint">${f.hint}</div>` : '';
+        if (f.type === 'textarea') {
+          return `<div class="ce-field ${f.full ? 'full' : ''}"><label>${f.label}</label><textarea data-ce-key="${f.key}">${safeText}</textarea>${hint}</div>`;
+        }
+        if (f.type === 'datetime') {
+          // Split ISO into date + time inputs
+          let datePart = '', timePart = '';
+          try { const d = new Date(current); if (!isNaN(d)) { datePart = d.toISOString().slice(0, 10); timePart = d.toTimeString().slice(0, 5); } } catch { }
+          return `<div class="ce-field ${f.full ? 'full' : ''}"><label>${f.label}</label>
+        <div style="display:flex;gap:0.5rem;">
+          <input type="date" data-ce-key="${f.key}" data-ce-part="date" value="${datePart}">
+          <input type="time" data-ce-key="${f.key}" data-ce-part="time" value="${timePart}">
+        </div>${hint}</div>`;
+        }
+        if (f.type === 'image') {
+          const preview = resolveUrl(current);
+          return `<div class="ce-field ${f.full ? 'full' : ''}"><label>${f.label}</label>
+        <div class="ce-upload">
+          <div class="preview" id="prev-${f.key}" style="${preview ? `background-image:url('${preview}');` : ''}"></div>
+          <div style="flex:1;min-width:0;">
+            <input type="text" data-ce-key="${f.key}" value="${safe}" placeholder="Paste a URL or upload below" style="margin-bottom:6px;">
+            <div style="display:flex;gap:0.5rem;">
+              <label class="btn-sm" style="cursor:pointer;">
+                <input type="file" accept="image/*" onchange="ceUpload(this,'${f.key}')">
+                Upload
+              </label>
+              <button type="button" class="btn-sm btn-danger-sm" onclick="ceClearImage('${f.key}')">Clear</button>
+            </div>
+          </div>
+        </div>${hint}</div>`;
+        }
+        return `<div class="ce-field ${f.full ? 'full' : ''}"><label>${f.label}</label><input type="text" data-ce-key="${f.key}" value="${safe}">${hint}</div>`;
+      };
+
+      const sections = CONTENT_SCHEMA.map(sec => `
+    <div class="ce-section">
+      <h3>${sec.title}</h3>
+      <div class="ce-sub">${sec.sub}</div>
+      <div class="ce-grid">${sec.fields.map(htmlFor).join('')}</div>
+    </div>
+  `).join('');
+
+      root.innerHTML = sections + `
+    <div class="ce-actions">
+      <span class="status" id="ce-status"></span>
+      <div style="flex:1;"></div>
+      <button type="button" class="btn-secondary" onclick="ceResetAll()">Reset to Defaults</button>
+      <button type="button" class="btn-primary" onclick="ceSaveAll()">Save Changes</button>
+    </div>`;
+    }
+
+    function ceCollect() {
+      const out = {};
+      document.querySelectorAll('[data-ce-key]').forEach(el => {
+        const key = el.dataset.ceKey;
+        if (el.dataset.cePart) return; // handled below
+        out[key] = el.value;
+      });
+      // Combine date + time into ISO
+      document.querySelectorAll('[data-ce-part="date"]').forEach(d => {
+        const key = d.dataset.ceKey;
+        const t = document.querySelector(`[data-ce-key="${key}"][data-ce-part="time"]`);
+        if (d.value && t && t.value) {
+          const local = new Date(`${d.value}T${t.value}:00`);
+          if (!isNaN(local)) out[key] = local.toISOString();
+        } else {
+          out[key] = '';
+        }
+      });
+      return out;
+    }
+
+    async function ceSaveAll() {
+      const status = document.getElementById('ce-status');
+      status.className = 'status'; status.textContent = 'Saving…';
+      const payload = ceCollect();
+      try {
+        await api.patch('/api/admin/settings', payload, adminToken);
+        // Refresh app config so the current tab reflects changes
+        await loadConfig();
+        status.className = 'status ok'; status.textContent = 'Saved ✓';
+        setTimeout(() => { status.textContent = ''; }, 2500);
+      } catch (e) {
+        status.className = 'status err'; status.textContent = 'Failed: ' + e.message;
+      }
+    }
+
+    async function ceResetAll() {
+      if (!confirm('Reset ALL content to default values? This cannot be undone.')) return;
+      const status = document.getElementById('ce-status');
+      status.className = 'status'; status.textContent = 'Resetting…';
+      try {
+        const r = await fetch(BACKEND_URL + '/api/admin/settings/reset', {
+          method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + adminToken }, body: '{}'
+        });
+        if (!r.ok) throw new Error((await r.json()).error || r.statusText);
+        await renderContentEditor();
+        await loadConfig();
+        status.className = 'status ok'; status.textContent = 'Reset ✓';
+      } catch (e) {
+        status.className = 'status err'; status.textContent = 'Failed: ' + e.message;
+      }
+    }
+
+    async function ceUpload(input, key) {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const status = document.getElementById('ce-status');
+      status.className = 'status'; status.textContent = 'Uploading…';
+      const fd = new FormData();
+      fd.append('file', file);
+      try {
+        const r = await fetch(BACKEND_URL + '/api/admin/upload', {
+          method: 'POST', headers: { Authorization: 'Bearer ' + adminToken }, body: fd
+        });
+        const data = await r.json();
+        if (!r.ok) throw new Error(data.error || r.statusText);
+        // Fill the URL field + update preview
+        const field = document.querySelector(`input[type=text][data-ce-key="${key}"]`);
+        if (field) field.value = data.url;
+        const preview = document.getElementById('prev-' + key);
+        if (preview) preview.style.backgroundImage = `url('${BACKEND_URL + data.url}')`;
+        status.className = 'status ok'; status.textContent = 'Uploaded — remember to Save ✓';
+      } catch (e) {
+        status.className = 'status err'; status.textContent = 'Upload failed: ' + e.message;
+      }
+      input.value = '';
+    }
+
+    function ceClearImage(key) {
+      const field = document.querySelector(`input[type=text][data-ce-key="${key}"]`);
+      if (field) field.value = '';
+      const preview = document.getElementById('prev-' + key);
+      if (preview) preview.style.backgroundImage = '';
+    }
+
+    // ============================================================
+    // NAVIGATION
+    // ============================================================
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(`page-${page}`).classList.add('active');
+      const tabs = { booking: 0, tickets: 1, admin: 2 };
+      if (tabs[page] !== undefined) document.querySelectorAll('.nav-tab')[tabs[page]]?.classList.add('active');
+      if (page === 'admin') { const all = JSON.parse(localStorage.getItem('ros_bookings') || '[]'); if (document.getElementById('admin-dashboard').style.display !== 'none') renderAdminDashboard(); }
+    }
+
+    function showFloor(floor) {
+      currentFloor = floor;
+      document.querySelectorAll('.floor-content').forEach(f => f.style.display = 'none');
+      document.querySelectorAll('.floor-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(`floor-${floor}`).style.display = 'block';
+      document.querySelectorAll('.floor-tab')[['gf', 'b1', 'b2'].indexOf(floor)].classList.add('active');
+    }
+
+    // ============================================================
+    // UTILS
+    // ============================================================
+    function hexToRgb(hex) {
+      const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+      return `${r},${g},${b}`;
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    buildGFMap();
+    buildB2Map();
+    buildB1Blocks();
+    updateCart();
+
+    loadConfig();
+    checkPendingBooking();
+    if (USE_BACKEND) {
+      refreshBookedSeats();
+      // Restore admin session if token is still valid
+      if (adminToken) {
+        document.getElementById('admin-login-screen').style.display = 'none';
+        document.getElementById('admin-dashboard').style.display = 'block';
+      }
+    }
+
+    // Show existing tickets if any
+    const existingBookings = JSON.parse(localStorage.getItem('ros_bookings') || '[]');
+    if (existingBookings.length === 0) {
+      document.getElementById('no-tickets').style.display = 'block';
+    }
+  </script>
+</body>
+
+</html>
